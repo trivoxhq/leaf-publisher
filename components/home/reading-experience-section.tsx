@@ -175,9 +175,11 @@ export function ReadingExperienceSection() {
             >
               <div className="border-b border-white/10 px-5 py-5 sm:px-6 sm:py-6">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-5">
-                  <h3 className="reader-mock-headline relative min-w-0 max-w-full">
+                  <h3 className="relative min-w-0 max-w-full font-display text-[clamp(1.05rem,2.8vw+0.35rem,1.45rem)] font-bold leading-snug tracking-tight sm:text-[clamp(1.1rem,2.2vw+0.4rem,1.55rem)]">
                     <span className="site-cta-banner__line inline-block!">
-                      The Midnight Garden
+                      <span className="site-cta-banner__accent">
+                        The Midnight Garden
+                      </span>
                     </span>
                   </h3>
                   <span className="shrink-0 self-start rounded-full border border-green/30 bg-green/15 px-3 py-1.5 text-xs font-semibold tabular-nums text-green2 sm:text-sm">

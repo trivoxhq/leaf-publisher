@@ -511,7 +511,6 @@ a {
   }
 
   .site-cta-banner__headline,
-  .reader-mock-headline,
   .site-cta-banner__line,
   .site-cta-banner__accent,
   .site-cta-banner__sub,
@@ -588,18 +587,6 @@ a {
 
   .site-cta-banner__line:nth-child(2) {
     animation-delay: 0.22s;
-  }
-
-  /** Reader mock card — large display title (featured-style glow + line reveal) */
-  .reader-mock-headline {
-    text-wrap: balance;
-    font-family: var(--font-display);
-    font-size: clamp(1.65rem, 5.25vw + 0.45rem, 2.85rem);
-    font-weight: 700;
-    line-height: 1.05;
-    letter-spacing: var(--tracking-display);
-    color: #fff;
-    animation: site-cta-soft-glow 7s ease-in-out 1.2s infinite;
   }
 
   .site-cta-banner__accent {
