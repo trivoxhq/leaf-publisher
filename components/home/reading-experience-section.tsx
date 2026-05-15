@@ -18,15 +18,13 @@ const READER_P1 =
 const READER_P2 =
   "The handwriting was her mother's — unmistakable even after twenty years — and yet the words belonged to a stranger.";
 
-/** Progressive strings share prefixes so only new characters type (react-type-animation). */
+/** Body only — chapter is static (display) above. Progressive prefix typing. */
 const READER_TYPE_SEQUENCE = [
   "",
   400,
-  READER_CHAPTER,
-  700,
-  `${READER_CHAPTER}\n\n${READER_P1}`,
-  600,
-  `${READER_CHAPTER}\n\n${READER_P1}\n\n${READER_P2}`,
+  READER_P1,
+  900,
+  `${READER_P1}\n\n${READER_P2}`,
   5200,
   "",
   600,
@@ -200,11 +198,11 @@ export function ReadingExperienceSection() {
 
               <div className="min-h-58 px-5 py-6 sm:min-h-64 sm:px-7 sm:py-8">
                 {reduceMotion ? (
-                  <div className="font-sans text-lg leading-[1.75] text-white/90 sm:text-xl">
-                    <p className="font-semibold tracking-tight text-white">
+                  <div className="text-white/90">
+                    <p className="font-display text-base font-bold leading-snug tracking-tight text-white sm:text-lg">
                       {READER_CHAPTER}
                     </p>
-                    <div className="mt-4 space-y-4">
+                    <div className="mt-4 space-y-4 font-sans text-sm leading-relaxed text-white/90 sm:mt-5 sm:text-base">
                       <p>
                         She unfolded the paper with the careful reverence one gives to{" "}
                         <em className="font-medium italic text-white">
@@ -216,21 +214,26 @@ export function ReadingExperienceSection() {
                     </div>
                   </div>
                 ) : (
-                  <TypeAnimation
-                    sequence={[...READER_TYPE_SEQUENCE]}
-                    wrapper="div"
-                    repeat={Infinity}
-                    speed={{ type: "keyStrokeDelayInMs", value: 30 }}
-                    deletionSpeed={{ type: "keyStrokeDelayInMs", value: 14 }}
-                    omitDeletionAnimation
-                    cursor
-                    preRenderFirstString={false}
-                    className="reading-experience-typewriter whitespace-pre-line font-sans text-lg font-normal leading-[1.75] tracking-normal text-white/92 sm:text-xl"
-                    style={{
-                      minHeight: "12.5rem",
-                    }}
-                    aria-live="polite"
-                  />
+                  <>
+                    <p className="font-display text-base font-bold leading-snug tracking-tight text-white sm:text-lg">
+                      {READER_CHAPTER}
+                    </p>
+                    <TypeAnimation
+                      sequence={[...READER_TYPE_SEQUENCE]}
+                      wrapper="div"
+                      repeat={Infinity}
+                      speed={{ type: "keyStrokeDelayInMs", value: 30 }}
+                      deletionSpeed={{ type: "keyStrokeDelayInMs", value: 14 }}
+                      omitDeletionAnimation
+                      cursor
+                      preRenderFirstString={false}
+                      className="reading-experience-typewriter mt-4 whitespace-pre-line font-sans text-sm font-normal leading-relaxed tracking-normal text-white/92 sm:mt-5 sm:text-base"
+                      style={{
+                        minHeight: "9rem",
+                      }}
+                      aria-live="polite"
+                    />
+                  </>
                 )}
               </div>
 
