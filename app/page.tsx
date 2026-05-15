@@ -25,6 +25,16 @@ const PricingSection = dynamic(() =>
   import("@/components/home/pricing-section").then((m) => m.PricingSection)
 );
 
+const ProcessSection = dynamic(() =>
+  import("@/components/home/process-section").then((m) => m.ProcessSection)
+);
+
+const ReadingExperienceSection = dynamic(() =>
+  import("@/components/home/reading-experience-section").then(
+    (m) => m.ReadingExperienceSection
+  )
+);
+
 export default function Home() {
   return (
     <div className="flex min-h-full min-w-0 flex-1 flex-col overflow-x-clip bg-paper font-sans text-text">
@@ -34,6 +44,8 @@ export default function Home() {
         <CategoriesSection />
         <FeaturedSection />
         <PricingSection />
+        <ProcessSection />
+        <ReadingExperienceSection />
       </Suspense>
     </div>
   );
