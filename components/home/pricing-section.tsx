@@ -256,14 +256,14 @@ export function PricingSection() {
                 viewport={{ once: true, margin: "-20px" }}
                 className={`relative flex flex-col rounded-2xl border p-6 text-center text-white sm:p-7 ${
                   plan.emphasized
-                    ? "border-green/45 shadow-[0_24px_60px_-28px_rgba(106,191,46,0.25)] ring-2 ring-green/30 ring-offset-2 ring-offset-paper lg:scale-[1.02]"
+                    ? "border-green/45 shadow-[0_24px_60px_-28px_rgba(217,34,67,0.25)] ring-2 ring-green/30 ring-offset-2 ring-offset-paper lg:scale-[1.02]"
                     : "border-white/10 shadow-[0_20px_50px_-36px_rgba(0,0,0,0.45)] hover:border-white/18"
                 }`}
                 style={{ backgroundColor: PRICING_CARD_BG }}
               >
                 {plan.badge && (
                   <div className="mb-4 flex justify-center lg:-mt-1">
-                    <span className="rounded-full bg-green px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white shadow-[0_8px_24px_-12px_rgba(106,191,46,0.55)]">
+                    <span className="rounded-full bg-green px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white shadow-[0_8px_24px_-12px_rgba(217,34,67,0.55)]">
                       {plan.badge}
                     </span>
                   </div>
@@ -321,7 +321,7 @@ export function PricingSection() {
                   href={plan.href}
                   className={`mt-8 inline-flex min-h-12 w-full items-center justify-center rounded-full px-5 text-sm font-semibold no-underline transition-colors sm:mt-9 ${
                     plan.emphasized
-                      ? "bg-green text-white! shadow-[0_12px_36px_-14px_rgba(106,191,46,0.55)] hover:bg-green2 hover:text-white!"
+                      ? "bg-green text-white! shadow-[0_12px_36px_-14px_rgba(217,34,67,0.55)] hover:bg-green2 hover:text-white!"
                       : "border border-white/15 bg-white/8 text-white! visited:text-white! hover:border-green/40 hover:bg-white/12 hover:text-green2!"
                   }`}
                 >

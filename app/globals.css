@@ -5,11 +5,11 @@
 /* -------------------------------------------------------------------------- */
 :root {
   --bg: #ffffff;
-  --green: #6abf2e;
-  --green2: #83d93f;
-  --paper: #edf2eb;
-  --muted: #697568;
-  --line: rgba(106, 191, 46, 0.15);
+  --green: #d92243;
+  --green2: #f69d39;
+  --paper: #f2eeeb;
+  --muted: #6f6468;
+  --line: rgba(217, 34, 67, 0.15);
   --line2: rgba(255, 255, 255, 0.07);
   --nav-h: 72px;
 
@@ -596,7 +596,7 @@ a {
       105deg,
       var(--green) 0%,
       var(--green2) 40%,
-      #e8ffd4 55%,
+      #ffe4c8 55%,
       var(--green2) 70%,
       var(--green) 100%
     );
@@ -665,7 +665,7 @@ a {
   }
 
   .site-cta-btn--primary {
-    color: #fff;
+    color: #ffffff;
     background: linear-gradient(
       135deg,
       color-mix(in srgb, var(--green) 92%, #fff) 0%,
@@ -692,6 +692,7 @@ a {
   }
 
   .site-cta-btn--primary:hover {
+    color: #ffffff;
     transform: translateY(-2px);
     filter: brightness(1.06);
   }

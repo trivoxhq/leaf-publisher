@@ -300,7 +300,7 @@ export function FeaturedSection() {
 
               <Link
                 href={EDITOR_PICK.href}
-                className="mt-6 inline-flex h-12 w-full items-center justify-center rounded-full bg-green px-6 text-sm font-semibold text-white shadow-[0_12px_40px_-16px_rgba(106,191,46,0.5)] transition-colors hover:bg-green2 sm:w-auto sm:min-w-48"
+                className="mt-6 inline-flex h-12 w-full items-center justify-center rounded-full bg-green px-6 text-sm font-semibold text-white shadow-[0_12px_40px_-16px_rgba(217,34,67,0.5)] transition-colors hover:bg-green2 sm:w-auto sm:min-w-48"
               >
                 Read Now — {EDITOR_PICK.price}
               </Link>
@@ -362,7 +362,7 @@ export function FeaturedSection() {
                     >
                       <Link
                         href={book.href}
-                        className={`featured-slider-card group/card flex h-full w-full flex-row overflow-hidden rounded-xl border border-white/12 bg-white/6 transition-[border-color,box-shadow] hover:border-green/40 hover:shadow-[0_16px_44px_-28px_rgba(106,191,46,0.35)] ${SLIDER_VIEWPORT_MIN}`}
+                        className={`featured-slider-card group/card flex h-full w-full flex-row overflow-hidden rounded-xl border border-white/12 bg-white/6 transition-[border-color,box-shadow] hover:border-green/40 hover:shadow-[0_16px_44px_-28px_rgba(217,34,67,0.35)] ${SLIDER_VIEWPORT_MIN}`}
                       >
                         <div className="relative w-[38%] max-w-36 shrink-0 self-stretch bg-black/40 sm:w-[34%] sm:max-w-40">
                           <Image

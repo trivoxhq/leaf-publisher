@@ -146,7 +146,7 @@ export function HeroSection() {
               <motion.div whileHover={{ scale: reduceMotion ? 1 : 1.02 }} whileTap={{ scale: 0.98 }}>
                 <Link
                   href="/get-started"
-                  className="inline-flex h-12 w-full items-center justify-center rounded-full bg-green px-8 text-sm font-semibold text-white shadow-[0_12px_40px_-16px_rgba(106,191,46,0.55)] transition-colors hover:bg-green2 sm:w-auto"
+                  className="inline-flex h-12 w-full items-center justify-center rounded-full bg-green px-8 text-sm font-semibold text-[#ffffff]! visited:text-[#ffffff]! hover:bg-green2 hover:text-[#ffffff]! sm:w-auto shadow-[0_12px_40px_-16px_rgba(217,34,67,0.55)] transition-colors"
                 >
                   Start for Free
                 </Link>

@@ -51,7 +51,7 @@ function TopBarTaglineIcon() {
   return (
     <motion.div
       aria-hidden
-      className="relative mr-2.5 flex size-7 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-white/[0.07] text-green2 shadow-[0_0_20px_-8px_rgba(131,217,63,0.55)] sm:size-8"
+      className="relative mr-2.5 flex size-7 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-white/[0.07] text-green2 shadow-[0_0_20px_-8px_rgba(246,157,57,0.55)] sm:size-8"
       animate={
         reduce
           ? undefined
@@ -196,7 +196,7 @@ function TopBar() {
 function BrandMark() {
   return (
     <motion.div
-      className="relative flex size-11 items-center justify-center rounded-2xl border border-line bg-paper/80 shadow-[0_12px_40px_-16px_rgba(106,191,46,0.45)] backdrop-blur-sm"
+      className="relative flex size-11 items-center justify-center rounded-2xl border border-line bg-paper/80 shadow-[0_12px_40px_-16px_rgba(217,34,67,0.45)] backdrop-blur-sm"
       whileHover="hover"
       initial="rest"
       animate="rest"
@@ -256,11 +256,11 @@ function GetStartedButton({ className = "" }: { className?: string }) {
     >
       <Link
         href="/get-started"
-        className={`group relative inline-flex items-center justify-center overflow-hidden rounded-full px-5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_32px_-12px_rgba(106,191,46,0.75)] outline-none ring-1 ring-white/10 transition-shadow focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2 focus-visible:ring-offset-bg ${className}`}
+        className={`group relative inline-flex items-center justify-center overflow-hidden rounded-full px-5 py-2.5 text-sm font-semibold text-[#ffffff]! visited:text-[#ffffff]! hover:text-[#ffffff]! shadow-[0_8px_32px_-12px_rgba(217,34,67,0.75)] outline-none ring-1 ring-white/10 transition-shadow focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2 focus-visible:ring-offset-bg ${className}`}
       >
         <span
           aria-hidden
-          className="absolute inset-0 bg-linear-to-r from-[#4a9a22] via-green to-green2 opacity-95 transition-opacity group-hover:opacity-100"
+          className="absolute inset-0 bg-linear-to-r from-[#b01a38] via-green to-green2 opacity-95 transition-opacity group-hover:opacity-100"
         />
         <motion.span
           aria-hidden
@@ -268,7 +268,7 @@ function GetStartedButton({ className = "" }: { className?: string }) {
           animate={{ x: ["-20%", "10%", "-20%"] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         />
-        <span className="relative z-10 tracking-tight">Get Started</span>
+        <span className="relative z-10 tracking-tight text-[#ffffff]">Get Started</span>
         <motion.span
           aria-hidden
           className="pointer-events-none absolute inset-0 opacity-0 mix-blend-screen transition-opacity duration-300 group-hover:opacity-100"

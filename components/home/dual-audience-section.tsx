@@ -217,7 +217,7 @@ export function DualAudienceSection() {
                 >
                   <Link
                     href={audience.href}
-                    className="group/btn inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-green px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_40px_-16px_rgba(106,191,46,0.5)] outline-none ring-1 ring-white/10 transition-[background-color,box-shadow,transform] duration-200 hover:bg-green2 hover:shadow-[0_14px_44px_-14px_rgba(131,217,63,0.55)] focus-visible:ring-2 focus-visible:ring-green2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#181818] active:scale-[0.98]"
+                    className="group/btn inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-green px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_40px_-16px_rgba(217,34,67,0.5)] outline-none ring-1 ring-white/10 transition-[background-color,box-shadow,transform] duration-200 hover:bg-green2 hover:shadow-[0_14px_44px_-14px_rgba(246,157,57,0.55)] focus-visible:ring-2 focus-visible:ring-green2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#181818] active:scale-[0.98]"
                   >
                     {audience.cta}
                     <HiArrowRight

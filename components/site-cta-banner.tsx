@@ -67,11 +67,14 @@ export function SiteCtaBanner() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: EASE, delay: reduce ? 0 : 0.4 }}
             >
-              <Link href="/get-started" className="site-cta-btn site-cta-btn--primary group text-white ">
-                Start Free Trial
+              <Link
+                href="/get-started"
+                className="site-cta-btn site-cta-btn--primary group text-[#ffffff]! visited:text-[#ffffff]! hover:text-[#ffffff]!"
+              >
+                <span className="text-[#ffffff]">Start Free Trial</span>
                 <span className="site-cta-btn__icon">
                   <HiArrowRight
-                    className="size-4 text-white transition-transform duration-300 group-hover:translate-x-0.5"
+                    className="size-4 text-[#ffffff] transition-transform duration-300 group-hover:translate-x-0.5"
                     aria-hidden
                   />
                 </span>

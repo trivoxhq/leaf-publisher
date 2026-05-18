@@ -74,7 +74,7 @@ function FooterBrandMark() {
   const reduce = useReducedMotion();
   return (
     <motion.div
-      className="relative flex size-12 shrink-0 items-center justify-center rounded-2xl border border-white/12 bg-white/8 shadow-[0_12px_40px_-18px_rgba(106,191,46,0.35)]"
+      className="relative flex size-12 shrink-0 items-center justify-center rounded-2xl border border-white/12 bg-white/8 shadow-[0_12px_40px_-18px_rgba(217,34,67,0.35)]"
       whileHover={reduce ? undefined : "hover"}
       initial="rest"
       animate="rest"

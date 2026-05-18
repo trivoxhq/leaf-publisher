@@ -58,7 +58,7 @@ function CategoryCard({
   return (
     <Link
       href={category.href}
-      className="group relative isolate flex min-h-54 flex-col overflow-hidden rounded-2xl border border-white/10 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.55)] p-5 transition-[border-color,box-shadow] duration-300 hover:border-green/40 hover:shadow-[0_16px_44px_-28px_rgba(106,191,46,0.35)] sm:min-h-58 sm:p-6"
+      className="group relative isolate flex min-h-54 flex-col overflow-hidden rounded-2xl border border-white/10 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.55)] p-5 transition-[border-color,box-shadow] duration-300 hover:border-green/40 hover:shadow-[0_16px_44px_-28px_rgba(217,34,67,0.35)] sm:min-h-58 sm:p-6"
     >
       <span
         aria-hidden

@@ -55,7 +55,7 @@ export default function Home() {
         <GenreMarqueeSection />
         <CategoriesSection />
         <FeaturedSection />
-        <PricingSection />
+        {/* <PricingSection /> */}
         <TestimonialsSection />
         <ProcessSection />
         <ReadingExperienceSection />
