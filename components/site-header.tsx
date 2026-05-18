@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   AnimatePresence,
-  LayoutGroup,
   motion,
   useReducedMotion,
   type Variants,
@@ -20,17 +19,12 @@ import { HiOutlineBookOpen, HiOutlineMenuAlt3, HiOutlineNewspaper, HiOutlineSpar
 import { MdHeadsetMic } from "react-icons/md";
 
 const TOP_BAR_BG = "#181818";
-/** Past this Y → compact (top bar hides). */
-const SCROLL_COMPACT_PX = 64;
-/** Past this Y → leave compact (top bar shows). Keep gap large enough to avoid oscillation. */
-const SCROLL_EXPAND_PX = 28;
+/** Scroll past this → show fixed compact bar. */
+const SCROLL_SHOW_COMPACT_PX = 100;
+/** Scroll above this → hide compact bar (before reaching top). */
+const SCROLL_HIDE_COMPACT_PX = 56;
 
 const NAV_TRANSITION_EASE = [0.22, 1, 0.36, 1] as const;
-const NAV_TRANSITION_NORMAL = {
-  duration: 0.48,
-  ease: NAV_TRANSITION_EASE,
-} as const;
-const NAV_TRANSITION_REDUCE = { duration: 0.15 } as const;
 
 const NAV_ITEMS = [
   { href: "/", label: "Home" },
@@ -47,7 +41,7 @@ function isActivePath(pathname: string, href: string) {
 
 function TopBarTaglineIcon() {
   return (
-    <motion.div
+    <div
       aria-hidden
       className="relative mr-2.5 flex size-7 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.07] text-green2 shadow-[0_0_20px_-8px_rgba(246,157,57,0.55)] sm:size-8"
     >
@@ -55,7 +49,7 @@ function TopBarTaglineIcon() {
       <span className="absolute -right-0.5 -top-0.5 text-white/90" aria-hidden>
         <HiOutlineSparkles className="size-2.5 sm:size-3" />
       </span>
-    </motion.div>
+    </div>
   );
 }
 
@@ -136,7 +130,7 @@ function TopBar() {
 function BrandMark() {
   return (
     <motion.div
-      className="relative flex size-11 items-center justify-center rounded-2xl border border-line bg-paper/80 shadow-[0_12px_40px_-16px_rgba(217,34,67,0.45)] backdrop-blur-sm"
+      className="relative flex size-11 items-center justify-center rounded-2xl border border-line bg-paper/80 shadow-[0_12px_40px_-16px_rgba(217,34,67,0.45)]"
       whileHover="hover"
       initial="rest"
       animate="rest"
@@ -207,12 +201,6 @@ function GetStartedButton({ className = "" }: { className?: string }) {
           className="pointer-events-none absolute -inset-8 bg-[radial-gradient(circle_at_30%_40%,rgba(255,255,255,0.28),transparent_55%)] opacity-35"
         />
         <span className="relative z-10 tracking-tight text-[#ffffff]">Get Started</span>
-        <motion.span
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-0 mix-blend-screen transition-opacity duration-300 group-hover:opacity-100"
-        >
-          <span className="absolute -left-1/2 top-0 h-full w-1/2 skew-x-12 bg-linear-to-r from-transparent via-white/25 to-transparent" />
-        </motion.span>
       </Link>
     </motion.div>
   );
@@ -236,11 +224,13 @@ const drawerItemVariants: Variants = {
 
 function DesktopNav({
   pathname,
-  theme = "light",
+  theme,
+  activeLineId,
   className = "",
 }: {
   pathname: string;
-  theme?: "light" | "dark";
+  theme: "light" | "dark";
+  activeLineId: string;
   className?: string;
 }) {
   const reduce = useReducedMotion();
@@ -267,18 +257,18 @@ function DesktopNav({
               className={`relative z-10 block px-2 py-2 text-sm font-medium tracking-wide sm:px-3 ${
                 isDark
                   ? active
-                    ? "text-white! transition-colors duration-300 ease-out"
-                    : "text-white/90! transition-colors duration-300 ease-out hover:text-white!"
+                    ? "text-white! transition-colors duration-200 ease-out"
+                    : "text-white/90! transition-colors duration-200 ease-out hover:text-white!"
                   : active
-                    ? "text-text transition-colors duration-300 ease-out"
-                    : "text-text/70 transition-colors duration-300 ease-out hover:text-text"
+                    ? "text-text transition-colors duration-200 ease-out"
+                    : "text-text/70 transition-colors duration-200 ease-out hover:text-text"
               }`}
             >
               {item.label}
             </Link>
             {active && (
               <motion.span
-                layoutId="nav-active-line"
+                layoutId={activeLineId}
                 className="absolute bottom-0 left-3 right-3 h-0.5 rounded-full bg-linear-to-r from-green via-green2 to-green sm:left-4 sm:right-4"
                 transition={
                   reduce
@@ -298,7 +288,7 @@ function DesktopNav({
                 transition={
                   reduce
                     ? { duration: 0 }
-                    : { duration: 0.22, ease: [0.22, 1, 0.36, 1] }
+                    : { duration: 0.22, ease: NAV_TRANSITION_EASE }
                 }
               />
             )}
@@ -309,19 +299,173 @@ function DesktopNav({
   );
 }
 
+function MenuToggleButton({
+  open,
+  onToggle,
+  variant,
+  reduce,
+  menuControlsId,
+}: {
+  open: boolean;
+  onToggle: () => void;
+  variant: "light" | "dark";
+  reduce: boolean;
+  menuControlsId: string;
+}) {
+  const isDark = variant === "dark";
+
+  return (
+    <motion.button
+      type="button"
+      className={`relative flex size-11 shrink-0 items-center justify-center rounded-xl border shadow-sm outline-none transition-[border-color,background-color,color] duration-200 ease-out focus-visible:ring-2 focus-visible:ring-offset-2 lg:hidden ${
+        isDark
+          ? "border-white/15 bg-white/10 text-white hover:border-green/40 hover:bg-white/15 focus-visible:ring-green2 focus-visible:ring-offset-[#181818]"
+          : "border-line bg-paper/60 text-text hover:border-green/35 hover:bg-paper focus-visible:ring-green focus-visible:ring-offset-bg"
+      }`}
+      aria-expanded={open}
+      aria-controls={menuControlsId}
+      aria-label={open ? "Close menu" : "Open menu"}
+      onClick={onToggle}
+      whileTap={{ scale: reduce ? 1 : 0.94 }}
+    >
+      <AnimatePresence initial={false} mode="popLayout">
+        {open ? (
+          <motion.span
+            key="close"
+            initial={{ rotate: -90, opacity: 0 }}
+            animate={{ rotate: 0, opacity: 1 }}
+            exit={{ rotate: 90, opacity: 0 }}
+            transition={
+              reduce ? { duration: 0.1 } : { duration: 0.22, ease: NAV_TRANSITION_EASE }
+            }
+            className="inline-flex"
+          >
+            <HiX className="size-6" />
+          </motion.span>
+        ) : (
+          <motion.span
+            key="menu"
+            initial={{ rotate: 90, opacity: 0 }}
+            animate={{ rotate: 0, opacity: 1 }}
+            exit={{ rotate: -90, opacity: 0 }}
+            transition={
+              reduce ? { duration: 0.1 } : { duration: 0.22, ease: NAV_TRANSITION_EASE }
+            }
+            className="inline-flex"
+          >
+            <HiOutlineMenuAlt3 className="size-6" />
+          </motion.span>
+        )}
+      </AnimatePresence>
+    </motion.button>
+  );
+}
+
+/** Full header row — static, in document flow at top of page. */
+function ExpandedNavBar({
+  pathname,
+  open,
+  onMenuToggle,
+  reduce,
+  menuControlsId,
+}: {
+  pathname: string;
+  open: boolean;
+  onMenuToggle: () => void;
+  reduce: boolean;
+  menuControlsId: string;
+}) {
+  return (
+    <div className="relative border-b border-line/80 bg-bg text-text shadow-[0_4px_24px_-16px_rgba(26,34,24,0.06)]">
+      <div className="container-site relative flex min-h-[var(--nav-h)] min-w-0 items-center gap-2 sm:gap-3">
+        <div className="shrink-0 pr-2 sm:pr-3">
+          <LogoBlock />
+        </div>
+
+        <div className="flex min-h-0 min-w-0 flex-1 items-center justify-end gap-2 sm:gap-3 lg:gap-5">
+          <DesktopNav
+            pathname={pathname}
+            theme="light"
+            activeLineId="nav-active-expanded"
+            className="hidden max-w-full justify-center overflow-x-auto scrollbar-none lg:flex"
+          />
+
+          <motion.div className="hidden shrink-0 lg:flex">
+            <GetStartedButton className="max-[380px]:px-4 max-[380px]:py-2 max-[380px]:text-[13px]" />
+          </motion.div>
+
+          <motion.div className="flex shrink-0 lg:hidden">
+            <GetStartedButton className="max-[380px]:px-4 max-[380px]:py-2 max-[380px]:text-[13px]" />
+          </motion.div>
+
+          <MenuToggleButton
+            open={open}
+            onToggle={onMenuToggle}
+            variant="light"
+            reduce={reduce}
+            menuControlsId={menuControlsId}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/** Compact bar — fixed overlay, slides in/out; never resizes the page header. */
+function CompactNavBar({
+  pathname,
+  open,
+  onMenuToggle,
+  reduce,
+  menuControlsId,
+}: {
+  pathname: string;
+  open: boolean;
+  onMenuToggle: () => void;
+  reduce: boolean;
+  menuControlsId: string;
+}) {
+  return (
+    <div
+      className="relative border-b border-white/10 text-white shadow-[0_12px_40px_-18px_rgba(0,0,0,0.45)]"
+      style={{ backgroundColor: TOP_BAR_BG }}
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-linear-to-b from-white/6 to-transparent"
+      />
+      <div className="container-site relative flex min-h-13 min-w-0 items-center justify-end gap-2 sm:gap-3 lg:justify-center lg:gap-5">
+        <DesktopNav
+          pathname={pathname}
+          theme="dark"
+          activeLineId="nav-active-compact"
+          className="hidden max-w-full flex-1 justify-center overflow-x-auto scrollbar-none lg:flex"
+        />
+
+        <MenuToggleButton
+          open={open}
+          onToggle={onMenuToggle}
+          variant="dark"
+          reduce={reduce}
+          menuControlsId={menuControlsId}
+        />
+      </div>
+    </div>
+  );
+}
+
 export function SiteHeader() {
   const pathname = usePathname();
   const reduce = useReducedMotion();
   const [open, setOpen] = useState(false);
-  const [compact, setCompact] = useState(false);
+  const [compactVisible, setCompactVisible] = useState(false);
   const panelId = useId();
   const closeBtnRef = useRef<HTMLButtonElement>(null);
   const scrollRafRef = useRef<number | null>(null);
   const pendingScrollY = useRef(0);
 
   useLayoutEffect(() => {
-    const y = window.scrollY;
-    setCompact(y > SCROLL_COMPACT_PX);
+    setCompactVisible(window.scrollY > SCROLL_SHOW_COMPACT_PX);
   }, []);
 
   useEffect(() => {
@@ -330,10 +474,10 @@ export function SiteHeader() {
       if (scrollRafRef.current !== null) return;
       scrollRafRef.current = requestAnimationFrame(() => {
         scrollRafRef.current = null;
-        const ly = pendingScrollY.current;
-        setCompact((was) => {
-          if (!was && ly > SCROLL_COMPACT_PX) return true;
-          if (was && ly < SCROLL_EXPAND_PX) return false;
+        const y = pendingScrollY.current;
+        setCompactVisible((was) => {
+          if (!was && y > SCROLL_SHOW_COMPACT_PX) return true;
+          if (was && y < SCROLL_HIDE_COMPACT_PX) return false;
           return was;
         });
       });
@@ -349,6 +493,7 @@ export function SiteHeader() {
   }, []);
 
   const close = useCallback(() => setOpen(false), []);
+  const toggleMenu = useCallback(() => setOpen((v) => !v), []);
 
   useEffect(() => {
     close();
@@ -368,153 +513,47 @@ export function SiteHeader() {
     ? { duration: 0.15 }
     : { type: "spring" as const, stiffness: 320, damping: 36, mass: 0.85 };
 
-  const navTransition = reduce ? NAV_TRANSITION_REDUCE : NAV_TRANSITION_NORMAL;
+  const compactSlideTransition = reduce
+    ? { duration: 0.12 }
+    : { duration: 0.32, ease: NAV_TRANSITION_EASE };
 
   return (
-    <header className="sticky top-0 z-50">
-      <div
-        className={`grid min-h-0 overflow-hidden transform-gpu transition-[grid-template-rows] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[grid-template-rows] ${reduce ? "duration-150" : "duration-480"}`}
-        style={{
-          gridTemplateRows: compact ? "0fr" : "1fr",
-          pointerEvents: compact ? "none" : "auto",
-        }}
-        aria-hidden={compact}
-      >
-        <div className="min-h-0 overflow-hidden">
-          <motion.div
-            initial={false}
-            animate={{
-              opacity: compact ? 0 : 1,
-            }}
-            transition={navTransition}
-            className="origin-top will-change-[opacity]"
-          >
-            <TopBar />
-          </motion.div>
-        </div>
-      </div>
-
-      <motion.div
-        className={`relative transform-gpu border-b transition-[background-color,box-shadow,border-color,color] ease-[cubic-bezier(0.22,1,0.36,1)] ${reduce ? "duration-150" : "duration-480"} ${
-          compact
-            ? "border-white/10 text-white shadow-[0_12px_40px_-18px_rgba(0,0,0,0.45)]"
-            : "border-line/80 bg-bg text-text shadow-[0_4px_24px_-16px_rgba(26,34,24,0.06)]"
-        }`}
-        style={
-          compact
-            ? { backgroundColor: TOP_BAR_BG }
-            : undefined
-        }
-      >
-        <div
-          aria-hidden
-          className={`pointer-events-none absolute inset-0 bg-linear-to-b from-white/6 to-transparent ${reduce ? "duration-150" : "duration-480"} transition-opacity ease-[cubic-bezier(0.22,1,0.36,1)] ${compact ? "opacity-100" : "opacity-0"}`}
+    <>
+      {/* Static header — stays in document flow; no sticky morphing */}
+      <header className="relative z-40">
+        <TopBar />
+        <ExpandedNavBar
+          pathname={pathname}
+          open={open}
+          onMenuToggle={toggleMenu}
+          reduce={!!reduce}
+          menuControlsId={panelId}
         />
-        <div
-          className={`container-site relative flex min-w-0 items-center gap-2 transition-[min-height] ease-[cubic-bezier(0.22,1,0.36,1)] sm:gap-3 ${reduce ? "duration-150" : "duration-480"}`}
-          style={{
-            minHeight: compact ? "3.25rem" : "var(--nav-h)",
-          }}
-        >
+      </header>
+
+      {/* Fixed compact bar — separate layer; transform-only show/hide */}
+      <AnimatePresence>
+        {compactVisible && (
           <motion.div
-            initial={false}
-            animate={{
-              maxWidth: compact ? 0 : 272,
-              opacity: compact ? 0 : 1,
-            }}
-            transition={navTransition}
-            className={`shrink-0 overflow-hidden ${compact ? "pointer-events-none" : ""}`}
+            key="compact-header"
+            role="banner"
+            aria-label="Compact navigation"
+            className="fixed inset-x-0 top-0 z-50 transform-gpu"
+            initial={reduce ? false : { y: "-100%" }}
+            animate={{ y: 0 }}
+            exit={reduce ? undefined : { y: "-100%" }}
+            transition={compactSlideTransition}
           >
-            <div className="w-[272px] max-w-[72vw] pr-2 sm:max-w-none sm:pr-3">
-              <LogoBlock />
-            </div>
+            <CompactNavBar
+              pathname={pathname}
+              open={open}
+              onMenuToggle={toggleMenu}
+              reduce={!!reduce}
+              menuControlsId={panelId}
+            />
           </motion.div>
-
-          <div
-            className={`flex min-w-0 min-h-0 flex-1 items-center gap-2 sm:gap-3 lg:gap-5 justify-end ${compact ? "lg:justify-center" : ""}`}
-          >
-            <LayoutGroup id="site-header-nav">
-              <DesktopNav
-                pathname={pathname}
-                theme={compact ? "dark" : "light"}
-                className="hidden max-w-full justify-center overflow-x-auto scrollbar-none lg:flex"
-              />
-            </LayoutGroup>
-
-            <motion.div
-              initial={false}
-              animate={{
-                maxWidth: compact ? 0 : 280,
-                opacity: compact ? 0 : 1,
-              }}
-              transition={navTransition}
-              className={`hidden shrink-0 overflow-hidden lg:flex ${compact ? "pointer-events-none" : ""}`}
-            >
-              <div className="pl-1">
-                <GetStartedButton className="max-[380px]:px-4 max-[380px]:py-2 max-[380px]:text-[13px]" />
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={false}
-              animate={{
-                maxWidth: compact ? 0 : 260,
-                opacity: compact ? 0 : 1,
-              }}
-              transition={navTransition}
-              className={`flex shrink-0 overflow-hidden lg:hidden ${compact ? "pointer-events-none" : ""}`}
-            >
-              <div className="min-w-[200px] pr-2">
-                <GetStartedButton className="max-[380px]:px-4 max-[380px]:py-2 max-[380px]:text-[13px]" />
-              </div>
-            </motion.div>
-
-            <motion.button
-              type="button"
-              className={`relative flex size-11 shrink-0 items-center justify-center rounded-xl border shadow-sm outline-none transition-[border-color,background-color,color] duration-300 ease-out focus-visible:ring-2 focus-visible:ring-offset-2 lg:hidden ${
-                compact
-                  ? "border-white/15 bg-white/10 text-white hover:border-green/40 hover:bg-white/15 focus-visible:ring-green2 focus-visible:ring-offset-[#181818]"
-                  : "border-line bg-paper/60 text-text hover:border-green/35 hover:bg-paper focus-visible:ring-green focus-visible:ring-offset-bg"
-              }`}
-              aria-expanded={open}
-              aria-controls={panelId}
-              aria-label={open ? "Close menu" : "Open menu"}
-              onClick={() => setOpen((v) => !v)}
-              whileTap={{ scale: reduce ? 1 : 0.94 }}
-            >
-              <AnimatePresence initial={false} mode="popLayout">
-                {open ? (
-                  <motion.span
-                    key="close"
-                    initial={{ rotate: -90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 90, opacity: 0 }}
-                    transition={
-                      reduce ? { duration: 0.1 } : { duration: 0.22, ease: NAV_TRANSITION_EASE }
-                    }
-                    className="inline-flex"
-                  >
-                    <HiX className="size-6" />
-                  </motion.span>
-                ) : (
-                  <motion.span
-                    key="menu"
-                    initial={{ rotate: 90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -90, opacity: 0 }}
-                    transition={
-                      reduce ? { duration: 0.1 } : { duration: 0.22, ease: NAV_TRANSITION_EASE }
-                    }
-                    className="inline-flex"
-                  >
-                    <HiOutlineMenuAlt3 className="size-6" />
-                  </motion.span>
-                )}
-              </AnimatePresence>
-            </motion.button>
-          </div>
-        </div>
-      </motion.div>
+        )}
+      </AnimatePresence>
 
       <AnimatePresence>
         {open && (
@@ -536,7 +575,7 @@ export function SiteHeader() {
               role="dialog"
               aria-modal="true"
               aria-label="Site navigation"
-              className="fixed inset-y-0 right-0 z-70 flex w-[min(100%,22rem)] flex-col border-l border-line bg-bg/95 py-6 shadow-[-24px_0_60px_-32px_rgba(0,0,0,0.35)] backdrop-blur-xl backdrop-saturate-150 lg:hidden"
+              className="fixed inset-y-0 right-0 z-70 flex w-[min(100%,22rem)] flex-col border-l border-line bg-bg py-6 shadow-[-24px_0_60px_-32px_rgba(0,0,0,0.35)] lg:hidden"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
@@ -598,6 +637,6 @@ export function SiteHeader() {
           </>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }
