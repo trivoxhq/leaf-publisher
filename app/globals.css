@@ -5,11 +5,11 @@
 /* -------------------------------------------------------------------------- */
 :root {
   --bg: #ffffff;
-  --green: #d92243;
-  --green2: #f69d39;
+  --green: #85c727;
+  --green2: #85c727;
   --paper: #f2eeeb;
   --muted: #6f6468;
-  --line: rgba(217, 34, 67, 0.15);
+  --line: rgba(133, 199, 39, 0.15);
   --line2: rgba(255, 255, 255, 0.07);
   --nav-h: 72px;
 
@@ -217,6 +217,16 @@ a {
 }
 
 @keyframes hero-headline-accent-flow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes genre-marquee-shimmer {
   0%,
   100% {
     background-position: 0% 50%;
@@ -539,7 +549,11 @@ a {
   
   .genre-marquee__label {
     animation: none !important;
-    background-position: 40% 50%;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    color: #c5c9d0 !important;
+    text-decoration-color: #9ca3af !important;
   }
 
   .site-cta-art-col__mesh,
@@ -1165,7 +1179,7 @@ a {
     color: #fff;
   }
 
-  /* Genre marquee — silver–green shimmer, italic + refined underline */
+  /* Genre marquee — silver shimmer, italic + refined underline */
   .genre-marquee__label {
     position: relative;
     display: inline-block;
@@ -1177,23 +1191,25 @@ a {
     text-decoration-style: solid;
     text-decoration-thickness: 1px;
     text-underline-offset: 0.3em;
-    text-decoration-color: color-mix(in srgb, var(--green2) 38%, #9fb0a0);
+    text-decoration-color: color-mix(in srgb, #c0c4c9 55%, #8b9199);
     background-image: linear-gradient(
       105deg,
-      #97a898 0%,
-      #dce6dc 16%,
-      var(--green2) 34%,
-      #f0f7ee 48%,
-      var(--green) 62%,
-      #c8d6c8 78%,
-      #8fa090 100%
+      #7a8088 0%,
+      #a8adb4 14%,
+      #d4d7dc 28%,
+      #f2f3f5 42%,
+      #ffffff 50%,
+      #d1d5db 58%,
+      #9ca3af 72%,
+      #b8bcc4 86%,
+      #6b7280 100%
     );
     background-size: 240% 100%;
     background-position: 0% 50%;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    background-position: 50% 50%;
+    animation: genre-marquee-shimmer 7s ease-in-out infinite;
   }
 
   /* Genre marquee — hide strip scrollbar; keep vertical wheel scroll on the page */

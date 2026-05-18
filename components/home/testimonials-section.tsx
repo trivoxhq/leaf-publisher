@@ -121,7 +121,7 @@ function TestimonialCard({
     <blockquote
       className={`group relative isolate flex h-full min-h-64 flex-col overflow-hidden rounded-2xl border p-5 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.55)] backdrop-blur-sm transition-[border-color,box-shadow] duration-300 sm:min-h-72 sm:p-6 lg:p-7 ${
         featured
-          ? "border-green/40 shadow-[0_20px_56px_-28px_rgba(217,34,67,0.22)]"
+          ? "border-green/40 shadow-[0_20px_56px_-28px_rgba(133,199,39,0.22)]"
           : "border-white/10 hover:border-white/18"
       }`}
     >

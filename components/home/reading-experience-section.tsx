@@ -147,7 +147,7 @@ export function ReadingExperienceSection() {
             <div className="mt-9 sm:mt-10">
               <Link
                 href="/reader"
-                className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-green px-7 py-3 text-sm font-semibold text-[#ffffff]! visited:text-[#ffffff]! shadow-[0_12px_40px_-16px_rgba(217,34,67,0.45)] outline-none ring-1 ring-green/20 transition-[background-color,box-shadow,transform,color] duration-200 hover:bg-green2 hover:text-[#ffffff]! hover:shadow-[0_14px_44px_-14px_rgba(246,157,57,0.5)] focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2 focus-visible:ring-offset-bg active:scale-[0.98]"
+                className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-green px-7 py-3 text-sm font-semibold text-[#ffffff]! visited:text-[#ffffff]! shadow-[0_12px_40px_-16px_rgba(133,199,39,0.45)] outline-none ring-1 ring-green/20 transition-[background-color,box-shadow,transform,color] duration-200 hover:bg-green2 hover:text-[#ffffff]! hover:shadow-[0_14px_44px_-14px_rgba(133,199,39,0.5)] focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2 focus-visible:ring-offset-bg active:scale-[0.98]"
               >
                 Explore the Reader
                 <HiArrowRight
@@ -194,7 +194,7 @@ export function ReadingExperienceSection() {
                   aria-valuemax={100}
                   aria-label="Reading progress"
                 >
-                  <div className="h-full w-[34%] rounded-full bg-linear-to-r from-green to-green2 shadow-[0_0_12px_rgba(246,157,57,0.35)]" />
+                  <div className="h-full w-[34%] rounded-full bg-linear-to-r from-green to-green2 shadow-[0_0_12px_rgba(133,199,39,0.35)]" />
                 </div>
               </div>
 

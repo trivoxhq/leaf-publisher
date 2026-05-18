@@ -121,7 +121,7 @@ export function ProcessSection() {
             const Icon = s.icon;
             return (
               <motion.li key={s.step} variants={itemVariants}>
-                <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/6 p-5 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.55)] backdrop-blur-sm transition-[border-color,box-shadow] duration-300 hover:border-green/35 hover:shadow-[0_16px_44px_-28px_rgba(217,34,67,0.22)] sm:p-6">
+                <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/6 p-5 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.55)] backdrop-blur-sm transition-[border-color,box-shadow] duration-300 hover:border-green/35 hover:shadow-[0_16px_44px_-28px_rgba(133,199,39,0.22)] sm:p-6">
                   <div
                     aria-hidden
                     className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
@@ -134,7 +134,7 @@ export function ProcessSection() {
                     <span className="font-display text-3xl font-bold tabular-nums tracking-tight text-white/25 sm:text-[2rem]">
                       {s.step}
                     </span>
-                    <span className="flex size-12 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/8 text-green2 shadow-[0_0_24px_-8px_rgba(246,157,57,0.35)] transition-colors duration-300 group-hover:border-green/40 group-hover:text-green2">
+                    <span className="flex size-12 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/8 text-green2 shadow-[0_0_24px_-8px_rgba(133,199,39,0.35)] transition-colors duration-300 group-hover:border-green/40 group-hover:text-green2">
                       <Icon className="size-6" aria-hidden />
                     </span>
                   </div>

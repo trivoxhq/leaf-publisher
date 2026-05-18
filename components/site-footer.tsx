@@ -1,14 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import {
   motion,
   useReducedMotion,
   type Variants,
 } from "framer-motion";
-import { FaInstagram, FaLeaf, FaYoutube } from "react-icons/fa";
+import { FaInstagram, FaYoutube } from "react-icons/fa";
 import { FaLinkedin, FaXTwitter } from "react-icons/fa6";
-import { HiOutlineBookOpen } from "react-icons/hi";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 /** Same as header top bar; footer uses a solid fill (no glass layers). */
@@ -69,41 +69,6 @@ const brandReveal: Variants = {
     transition: { duration: 0.45, ease: EASE },
   },
 };
-
-function FooterBrandMark() {
-  const reduce = useReducedMotion();
-  return (
-    <motion.div
-      className="relative flex size-12 shrink-0 items-center justify-center rounded-2xl border border-white/12 bg-white/8 shadow-[0_12px_40px_-18px_rgba(217,34,67,0.35)]"
-      whileHover={reduce ? undefined : "hover"}
-      initial="rest"
-      animate="rest"
-    >
-      <motion.span
-        variants={{
-          rest: { rotate: -6, y: 0 },
-          hover: { rotate: -12, y: -1 },
-        }}
-        transition={{ type: "spring", stiffness: 420, damping: 22 }}
-        className="absolute text-green"
-        aria-hidden
-      >
-        <FaLeaf className="size-5" />
-      </motion.span>
-      <motion.span
-        variants={{
-          rest: { rotate: 8, y: 2, opacity: 0.92 },
-          hover: { rotate: 14, y: 3, opacity: 1 },
-        }}
-        transition={{ type: "spring", stiffness: 420, damping: 22 }}
-        className="text-white/90"
-        aria-hidden
-      >
-        <HiOutlineBookOpen className="size-[22px]" />
-      </motion.span>
-    </motion.div>
-  );
-}
 
 function slugify(s: string) {
   return s.toLowerCase().replace(/\s+/g, "-");
@@ -179,18 +144,21 @@ export function SiteFooter() {
           >
             <Link
               href="/"
-              className="group flex w-full items-start gap-4 outline-none focus-visible:ring-2 focus-visible:ring-green2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#181818] rounded-xl"
+              className="group flex w-full flex-col items-start outline-none transition-opacity hover:opacity-95 focus-visible:ring-2 focus-visible:ring-green2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#181818] rounded-xl"
+              aria-label="Leaf Publisher home"
             >
-              <FooterBrandMark />
-              <div className="min-w-0 flex-1">
-                <span className="font-display text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-                  Leaf Publisher
-                </span>
-                <p className="mt-3 w-full text-sm leading-relaxed text-white/70 sm:text-[15px]">
-                  A premium ebook platform for readers who take reading seriously, and
-                  authors who take publishing personally.
-                </p>
-              </div>
+              <Image
+                src="/logo-light.svg"
+                alt="Leaf Publisher"
+                width={249}
+                height={61}
+                className="h-6 w-auto sm:h-7"
+                unoptimized
+              />
+              <p className="mt-4 w-full text-sm leading-relaxed text-white/70 sm:text-[15px]">
+                A premium ebook platform for readers who take reading seriously, and
+                authors who take publishing personally.
+              </p>
             </Link>
 
             <div className="mt-8">

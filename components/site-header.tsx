@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -9,14 +10,7 @@ import {
   type Variants,
 } from "framer-motion";
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from "react";
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaLeaf,
-} from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
-import { HiOutlineBookOpen, HiOutlineMenuAlt3, HiOutlineNewspaper, HiOutlineSparkles, HiX } from "react-icons/hi";
-import { MdHeadsetMic } from "react-icons/md";
+import { HiOutlineMenuAlt3, HiX } from "react-icons/hi";
 
 const TOP_BAR_BG = "#181818";
 /** Scroll past this → show fixed compact bar. */
@@ -39,144 +33,23 @@ function isActivePath(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-function TopBarTaglineIcon() {
-  return (
-    <div
-      aria-hidden
-      className="relative mr-2.5 flex size-7 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.07] text-green2 shadow-[0_0_20px_-8px_rgba(246,157,57,0.55)] sm:size-8"
-    >
-      <HiOutlineNewspaper className="size-[15px] sm:size-4" />
-      <span className="absolute -right-0.5 -top-0.5 text-white/90" aria-hidden>
-        <HiOutlineSparkles className="size-2.5 sm:size-3" />
-      </span>
-    </div>
-  );
-}
-
-function TopBar() {
-  return (
-    <div
-      className="relative border-b border-white/6 text-white/90"
-      style={{ backgroundColor: TOP_BAR_BG }}
-    >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-linear-to-b from-white/5 to-transparent"
-      />
-      <div className="container-site relative flex min-h-10 flex-wrap items-center justify-between gap-x-6 gap-y-2 py-2 text-[11px] font-medium tracking-wide sm:text-xs">
-        <div className="flex min-w-0 flex-wrap items-center gap-x-2">
-          <TopBarTaglineIcon />
-          <p className="min-w-0 text-white/75">
-            <span className="text-white/90">Publish</span>
-            <span className="mx-2 text-white/25" aria-hidden>
-              ·
-            </span>
-            <span className="text-white/90">Discover</span>
-            <span className="mx-2 text-white/25" aria-hidden>
-              ·
-            </span>
-            <span className="text-white/90">Read</span>
-          </p>
-        </div>
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 sm:gap-x-6">
-          <span className="inline-flex items-center gap-2 text-white/80">
-            <MdHeadsetMic className="size-4 shrink-0 text-green2 opacity-90" aria-hidden />
-            24/7 Support
-          </span>
-          <ul
-            className="hidden items-center gap-1.5 sm:flex sm:gap-2"
-            aria-label="Social links"
-          >
-            <li>
-              <a
-                href="https://www.instagram.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex size-8 items-center justify-center rounded-full text-white/70 transition-colors hover:bg-white/10 hover:text-white"
-                aria-label="Instagram"
-              >
-                <FaInstagram className="size-[15px]" />
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.facebook.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex size-8 items-center justify-center rounded-full text-white/70 transition-colors hover:bg-white/10 hover:text-white"
-                aria-label="Facebook"
-              >
-                <FaFacebookF className="size-3" />
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://x.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex size-8 items-center justify-center rounded-full text-white/70 transition-colors hover:bg-white/10 hover:text-white"
-                aria-label="X"
-              >
-                <FaXTwitter className="size-[15px]" />
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function BrandMark() {
-  return (
-    <motion.div
-      className="relative flex size-11 items-center justify-center rounded-2xl border border-line bg-paper/80 shadow-[0_12px_40px_-16px_rgba(217,34,67,0.45)]"
-      whileHover="hover"
-      initial="rest"
-      animate="rest"
-    >
-      <motion.span
-        variants={{
-          rest: { rotate: -6, y: 0 },
-          hover: { rotate: -14, y: -1 },
-        }}
-        transition={{ type: "spring", stiffness: 420, damping: 22 }}
-        className="absolute text-green"
-        aria-hidden
-      >
-        <FaLeaf className="size-5" />
-      </motion.span>
-      <motion.span
-        variants={{
-          rest: { rotate: 8, y: 2, opacity: 0.92 },
-          hover: { rotate: 14, y: 3, opacity: 1 },
-        }}
-        transition={{ type: "spring", stiffness: 420, damping: 22 }}
-        className="text-text/90"
-        aria-hidden
-      >
-        <HiOutlineBookOpen className="size-[22px]" />
-      </motion.span>
-    </motion.div>
-  );
-}
 
 function LogoBlock() {
   return (
     <Link
       href="/"
-      className="group flex min-w-0 items-center gap-2 sm:gap-3 outline-none transition-opacity hover:opacity-95 focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded-xl"
+      className="group flex min-w-0 items-center outline-none transition-opacity hover:opacity-95 focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded-xl"
       aria-label="Leaf Publisher home"
     >
-      <BrandMark />
-      <div className="flex flex-col leading-none">
-        <span className="font-display text-xl font-semibold tracking-tight text-text sm:text-2xl">
-          Leaf Publisher
-        </span>
-        <span className="mt-1 hidden text-[11px] font-medium uppercase tracking-[0.22em] text-muted sm:block">
-          Editorial studio
-        </span>
-      </div>
+      <Image
+        src="/logo-dark.svg"
+        alt="Leaf Publisher"
+        width={249}
+        height={61}
+        className="h-4 w-auto sm:h-5"
+        priority
+        unoptimized
+      />
     </Link>
   );
 }
@@ -190,11 +63,11 @@ function GetStartedButton({ className = "" }: { className?: string }) {
     >
       <Link
         href="/get-started"
-        className={`group relative inline-flex items-center justify-center overflow-hidden rounded-full px-5 py-2.5 text-sm font-semibold text-[#ffffff]! visited:text-[#ffffff]! hover:text-[#ffffff]! shadow-[0_8px_32px_-12px_rgba(217,34,67,0.75)] outline-none ring-1 ring-white/10 transition-shadow focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2 focus-visible:ring-offset-bg ${className}`}
+        className={`group relative inline-flex items-center justify-center overflow-hidden rounded-full px-5 py-2.5 text-sm font-semibold text-[#ffffff]! visited:text-[#ffffff]! hover:text-[#ffffff]! shadow-[0_8px_32px_-12px_rgba(133,199,39,0.75)] outline-none ring-1 ring-white/10 transition-shadow focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2 focus-visible:ring-offset-bg ${className}`}
       >
         <span
           aria-hidden
-          className="absolute inset-0 bg-linear-to-r from-[#b01a38] via-green to-green2 opacity-95 transition-opacity group-hover:opacity-100"
+          className="absolute inset-0 bg-linear-to-r from-[#6ba820] via-green to-green2 opacity-95 transition-opacity group-hover:opacity-100"
         />
         <span
           aria-hidden
@@ -521,7 +394,6 @@ export function SiteHeader() {
     <>
       {/* Static header — stays in document flow; no sticky morphing */}
       <header className="relative z-40">
-        <TopBar />
         <ExpandedNavBar
           pathname={pathname}
           open={open}

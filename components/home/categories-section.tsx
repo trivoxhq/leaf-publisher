@@ -59,7 +59,7 @@ function formatTitleCount(count: string) {
 const FORM_LABEL_CLASS = "mb-1 block text-xs font-medium text-white/80";
 
 const FORM_FIELD_CLASS =
-  "w-full rounded-lg border border-white/15 bg-white/8 px-3 py-2 text-xs leading-snug placeholder:text-white/45 outline-none transition-[border-color,box-shadow] duration-200 focus:border-[#F69D39]/45 focus:ring-2 focus:ring-[#F69D39]/20 sm:text-[0.8125rem]";
+  "w-full rounded-lg border border-white/15 bg-white/8 px-3 py-2 text-xs leading-snug placeholder:text-white/45 outline-none transition-[border-color,box-shadow] duration-200 focus:border-[#85C727]/45 focus:ring-2 focus:ring-[#85C727]/20 sm:text-[0.8125rem]";
 
 /** Inline only — overrides global `color: inherit` on inputs and autofill. */
 const FORM_FIELD_STYLE: CSSProperties = {
@@ -134,7 +134,7 @@ function CategoriesContactForm({ motionEnabled }: { motionEnabled: boolean }) {
         >
           {submitted && (
             <p
-              className="rounded-xl border border-[#F69D39]/35 bg-[#F69D39]/10 px-4 py-3 text-sm font-medium text-[#F69D39]"
+              className="rounded-xl border border-[#85C727]/35 bg-[#85C727]/10 px-4 py-3 text-sm font-medium text-[#85C727]"
               role="status"
             >
               Thanks — your message has been sent.
@@ -235,7 +235,7 @@ function CategoryCard({
   return (
     <Link
       href={category.href}
-      className="group relative isolate flex min-h-54 flex-col overflow-hidden rounded-2xl border border-white/10 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.55)] p-5 transition-[border-color,box-shadow] duration-300 hover:border-green/40 hover:shadow-[0_16px_44px_-28px_rgba(217,34,67,0.35)] sm:min-h-58 sm:p-6"
+      className="group relative isolate flex min-h-54 flex-col overflow-hidden rounded-2xl border border-white/10 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.55)] p-5 transition-[border-color,box-shadow] duration-300 hover:border-green/40 hover:shadow-[0_16px_44px_-28px_rgba(133,199,39,0.35)] sm:min-h-58 sm:p-6"
     >
       <span
         aria-hidden
@@ -247,7 +247,7 @@ function CategoryCard({
       />
 
       <div className="relative z-2 flex h-full flex-col">
-        <div className="mb-5 flex size-11 items-center justify-center rounded-xl border border-white/15 bg-white/8 text-[#F69D39] shadow-sm transition-colors duration-300 group-hover:border-[#F69D39]/40 group-hover:bg-white/12">
+        <div className="mb-5 flex size-11 items-center justify-center rounded-xl border border-white/15 bg-white/8 text-[#85C727] shadow-sm transition-colors duration-300 group-hover:border-[#85C727]/40 group-hover:bg-white/12">
           <Icon className="size-5" aria-hidden />
         </div>
 
@@ -258,10 +258,10 @@ function CategoryCard({
           {formatTitleCount(category.titles)}
         </p>
 
-        <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-semibold text-[#F69D39] transition-colors group-hover:text-[#F69D39]">
+        <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-semibold text-[#85C727] transition-colors group-hover:text-[#85C727]">
           Browse
           <HiArrowRight
-            className="size-4 text-[#F69D39] transition-transform duration-300 group-hover:translate-x-1"
+            className="size-4 text-[#85C727] transition-transform duration-300 group-hover:translate-x-1"
             aria-hidden
           />
         </span>

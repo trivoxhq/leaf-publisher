@@ -266,7 +266,7 @@ export function HeroBookGallery() {
                   layout
                   className={`block h-2 rounded-full ${
                     active
-                      ? "bg-text shadow-[0_0_0_2px_rgba(217,34,67,0.4),0_2px_10px_rgba(26,34,24,0.12)]"
+                      ? "bg-text shadow-[0_0_0_2px_rgba(133,199,39,0.4),0_2px_10px_rgba(26,34,24,0.12)]"
                       : "bg-text/35 hover:bg-text/55"
                   }`}
                   animate={{
@@ -402,7 +402,7 @@ export function HeroBookGallery() {
                   transition={{ delay: reduceMotion ? 0 : 0.12, duration: 0.45, ease: EASE }}
                   style={{ transformStyle: "preserve-3d" }}
                 >
-                  <div className="relative aspect-3/4 overflow-hidden rounded-2xl border border-white/50 bg-bg shadow-[0_24px_56px_-28px_rgba(26,34,24,0.35),0_0_0_1px_rgba(217,34,67,0.12)] ring-1 ring-green/15 sm:rounded-3xl md:shadow-[0_32px_64px_-32px_rgba(26,34,24,0.4)]">
+                  <div className="relative aspect-3/4 overflow-hidden rounded-2xl border border-white/50 bg-bg shadow-[0_24px_56px_-28px_rgba(26,34,24,0.35),0_0_0_1px_rgba(133,199,39,0.12)] ring-1 ring-green/15 sm:rounded-3xl md:shadow-[0_32px_64px_-32px_rgba(26,34,24,0.4)]">
                     <Image
                       src={book.coverSrc}
                       alt=""
@@ -474,7 +474,7 @@ export function HeroBookGallery() {
                   transition={{ type: "spring", stiffness: 480, damping: 28 }}
                   className={`snap-center relative flex w-[min(11.25rem,calc(100vw-3.25rem))] max-w-54 shrink-0 scroll-m-2 gap-3 rounded-xl border px-3.5 py-2.5 text-left shadow-sm transition-[border-color,background-color,box-shadow,transform] duration-200 ease-out sm:w-51 sm:scroll-m-3 sm:rounded-2xl sm:px-4 sm:py-3.5 md:w-53 ${
                     active
-                      ? "border-green/45 bg-bg shadow-[0_12px_40px_-22px_rgba(217,34,67,0.48)] ring-2 ring-green/30 ring-offset-2 ring-offset-bg/90"
+                      ? "border-green/45 bg-bg shadow-[0_12px_40px_-22px_rgba(133,199,39,0.48)] ring-2 ring-green/30 ring-offset-2 ring-offset-bg/90"
                       : "border-line/55 bg-bg/50 ring-0 hover:border-green/25 hover:bg-bg/95 hover:shadow-md active:scale-[0.99] sm:bg-bg/40"
                   }`}
                 >
