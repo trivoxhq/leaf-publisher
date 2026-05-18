@@ -44,9 +44,9 @@ function LogoBlock() {
       <Image
         src="/logo-dark.svg"
         alt="Leaf Publisher"
-        width={249}
+        width={165}
         height={61}
-        className="h-4 w-auto sm:h-5"
+        className="h-4  sm:h-5"
         priority
         unoptimized
       />

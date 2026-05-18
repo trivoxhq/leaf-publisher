@@ -150,9 +150,9 @@ export function SiteFooter() {
               <Image
                 src="/logo-light.svg"
                 alt="Leaf Publisher"
-                width={249}
+                width={165}
                 height={61}
-                className="h-6 w-auto sm:h-7"
+                className="h-6 sm:h-7"
                 unoptimized
               />
               <p className="mt-4 w-full text-sm leading-relaxed text-white/70 sm:text-[15px]">
