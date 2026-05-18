@@ -269,10 +269,12 @@ export function TestimonialsSection() {
           </p>
           <h2
             id="testimonials-heading"
-            className="font-display text-[clamp(2rem,4.5vw+0.5rem,3.25rem)] font-bold leading-[1.08] tracking-tight text-text"
+            className="site-cta-banner__headline text-text"
           >
-            Loved by{" "}
-            <span className="hero-heading__accent">real readers</span>
+            <span className="site-cta-banner__line block">
+              Loved By{" "}
+              <span className="hero-heading__accent">Real Readers</span>
+            </span>
           </h2>
         </motion.header>
 

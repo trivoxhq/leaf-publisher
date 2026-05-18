@@ -495,7 +495,7 @@ export function SiteHeader() {
           </motion.div>
 
           <div
-            className={`flex min-w-0 min-h-0 flex-1 items-center gap-2 sm:gap-3 lg:gap-5 ${compact ? "justify-center" : "justify-end"}`}
+            className={`flex min-w-0 min-h-0 flex-1 items-center gap-2 sm:gap-3 lg:gap-5 justify-end ${compact ? "lg:justify-center" : ""}`}
           >
             <LayoutGroup id="site-header-nav">
               <DesktopNav

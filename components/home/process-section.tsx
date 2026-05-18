@@ -102,12 +102,12 @@ export function ProcessSection() {
           <h2
             id="process-heading"
             className="site-cta-banner__headline relative max-w-full whitespace-nowrap"
-            >
-              <span className="site-cta-banner__line inline-block!">
-                <span className="site-cta-banner__accent"> Simple from </span>
-                Day <span className="site-cta-banner__accent">One</span>
-              </span>
-            </h2>
+          >
+            <span className="site-cta-banner__line inline-block!">
+              <span className="site-cta-banner__accent">Simple from</span> Day{" "}
+              <span className="site-cta-banner__accent">One</span>
+            </span>
+          </h2>
         </motion.header>
 
         <motion.ul
