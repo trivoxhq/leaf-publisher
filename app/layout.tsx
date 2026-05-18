@@ -32,10 +32,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${nunito.variable} ${cormorantGaramond.variable} h-full max-w-full overflow-x-clip antialiased`}
     >
       {/* overflow-x-clip: clips horizontal bleed without turning body into a scrollport (sticky header breaks with overflow-x-hidden + visible-y). */}
-      <body className="flex min-h-full min-w-0 flex-col overflow-x-clip font-sans">
+      {/* suppressHydrationWarning: browser extensions (e.g. ColorZilla) inject attrs like cz-shortcut-listen on body */}
+      <body
+        suppressHydrationWarning
+        className="flex min-h-full min-w-0 flex-col overflow-x-clip font-sans"
+      >
         <SiteHeader />
         <main className="flex min-h-0 min-w-0 flex-1 flex-col overflow-x-clip">{children}</main>
         <SiteCtaBanner />

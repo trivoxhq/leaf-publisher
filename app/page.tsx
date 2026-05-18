@@ -15,6 +15,12 @@ const CategoriesSection = dynamic(() =>
   )
 );
 
+const TestimonialsSection = dynamic(() =>
+  import("@/components/home/testimonials-section").then(
+    (m) => m.TestimonialsSection
+  )
+);
+
 const FeaturedSection = dynamic(() =>
   import("@/components/home/featured-section").then(
     (m) => m.FeaturedSection
@@ -35,6 +41,12 @@ const ReadingExperienceSection = dynamic(() =>
   )
 );
 
+const DualAudienceSection = dynamic(() =>
+  import("@/components/home/dual-audience-section").then(
+    (m) => m.DualAudienceSection
+  )
+);
+
 export default function Home() {
   return (
     <div className="flex min-h-full min-w-0 flex-1 flex-col overflow-x-clip bg-paper font-sans text-text">
@@ -44,8 +56,10 @@ export default function Home() {
         <CategoriesSection />
         <FeaturedSection />
         <PricingSection />
+        <TestimonialsSection />
         <ProcessSection />
         <ReadingExperienceSection />
+        <DualAudienceSection />
       </Suspense>
     </div>
   );
