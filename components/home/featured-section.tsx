@@ -15,6 +15,8 @@ import {
   HiOutlineChevronUp,
 } from "react-icons/hi";
 
+import { useInView } from "@/hooks/use-in-view";
+
 const EASE = [0.22, 1, 0.36, 1] as const;
 const SLIDE_MS = 5200;
 const FEATURED_DARK_BG = "#181818";
@@ -151,6 +153,9 @@ function sliderReducer(
 
 export function FeaturedSection() {
   const reduceMotion = useReducedMotion();
+  const { ref: sectionRef, inView } = useInView<HTMLElement>({
+    rootMargin: "120px 0px",
+  });
   const [{ active, direction }, dispatch] = useReducer(sliderReducer, {
     active: 0,
     direction: 1 as const,
@@ -164,10 +169,10 @@ export function FeaturedSection() {
   );
 
   useEffect(() => {
-    if (reduceMotion) return;
+    if (reduceMotion || !inView || document.hidden) return;
     const id = window.setInterval(goNext, SLIDE_MS);
     return () => window.clearInterval(id);
-  }, [goNext, reduceMotion]);
+  }, [goNext, reduceMotion, inView]);
 
   const itemVariants = useMemo<Variants>(
     () => ({
@@ -198,6 +203,7 @@ export function FeaturedSection() {
 
   return (
     <section
+      ref={sectionRef}
       className="cv-section featured-dark relative overflow-x-hidden border-t border-white/10 text-white/90"
       style={{ backgroundColor: FEATURED_DARK_BG }}
       aria-labelledby="featured-heading"

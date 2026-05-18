@@ -3,6 +3,8 @@
 import { useReducedMotion } from "framer-motion";
 import Marquee from "react-fast-marquee";
 
+import { useInView } from "@/hooks/use-in-view";
+
 const MARQUEE_BG = "#181818";
 
 const GENRES = [
@@ -28,10 +30,12 @@ function GenrePill({ label }: { label: string }) {
 
 export function GenreMarqueeSection() {
   const reduceMotion = useReducedMotion();
+  const { ref, inView } = useInView<HTMLElement>({ rootMargin: "120px 0px" });
 
   return (
     <section
-      className="cv-section genre-marquee-section w-full max-w-full min-w-0 overflow-hidden border-y border-white/10 text-white/90"
+      ref={ref}
+      className="genre-marquee-section cv-section w-full max-w-full min-w-0 select-none overflow-hidden border-y border-white/10 text-white/90"
       style={{ backgroundColor: MARQUEE_BG }}
       aria-labelledby="genre-marquee-heading"
     >
@@ -51,9 +55,10 @@ export function GenreMarqueeSection() {
           aria-hidden
         >
           <Marquee
-            className="w-full max-w-full min-w-0 overflow-hidden overscroll-none py-6 sm:py-5 md:py-5"
+            className="w-full max-w-full min-w-0 overflow-hidden overscroll-x-contain py-6 sm:py-5 md:py-5"
             style={{ maxWidth: "100%", overflow: "hidden" }}
             speed={42}
+            play={inView}
             pauseOnHover
             autoFill
             gradient

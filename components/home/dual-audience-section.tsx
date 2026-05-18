@@ -90,25 +90,13 @@ export function DualAudienceSection() {
         transition={{ duration: reduceMotion ? 0.15 : 0.7, ease: EASE }}
       />
 
-      <motion.div
+      <div
         aria-hidden
         className="pointer-events-none absolute -left-24 top-1/4 size-72 rounded-full bg-green/8 blur-3xl"
-        animate={
-          reduceMotion
-            ? undefined
-            : { opacity: [0.35, 0.55, 0.35], scale: [1, 1.08, 1] }
-        }
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
       />
-      <motion.div
+      <div
         aria-hidden
         className="pointer-events-none absolute -right-20 bottom-1/4 size-64 rounded-full bg-green2/6 blur-3xl"
-        animate={
-          reduceMotion
-            ? undefined
-            : { opacity: [0.25, 0.45, 0.25], scale: [1.05, 1, 1.05] }
-        }
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
       />
 
       <motion.div

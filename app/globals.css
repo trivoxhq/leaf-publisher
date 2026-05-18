@@ -572,7 +572,6 @@ a {
     line-height: 1.06;
     letter-spacing: var(--tracking-display);
     color: #fff;
-    animation: site-cta-soft-glow 7s ease-in-out 1.2s infinite;
   }
 
   .site-cta-banner__line {
@@ -601,12 +600,10 @@ a {
       var(--green) 100%
     );
     background-size: 240% 100%;
-    background-position: 0% 50%;
+    background-position: 50% 50%;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: hero-headline-accent-flow 5s ease-in-out infinite;
-    animation-delay: 0.5s;
     animation-fill-mode: backwards;
   }
 
@@ -673,8 +670,6 @@ a {
       var(--green2) 100%
     );
     border: 1px solid color-mix(in srgb, var(--green2) 70%, #fff);
-    animation: site-cta-btn-glow-pulse 4s ease-in-out infinite;
-    animation-delay: 0.6s;
   }
 
   .site-cta-btn--primary::after {
@@ -787,7 +782,7 @@ a {
         transparent 55%
       ),
       linear-gradient(165deg, #121212 0%, #181818 48%, #1a2218 100%);
-    animation: site-cta-art-mesh-drift 14s ease-in-out infinite;
+    animation: none;
   }
 
   .site-cta-art-col__grid {
@@ -799,7 +794,7 @@ a {
       linear-gradient(90deg, color-mix(in srgb, #ffffff 8%, transparent) 1px, transparent 1px);
     background-size: 28px 28px;
     mask-image: radial-gradient(ellipse 85% 75% at 35% 50%, #000 20%, transparent 72%);
-    animation: site-cta-art-grid-fade 8s ease-in-out infinite;
+    animation: none;
   }
 
   .site-cta-art-col__orb {
@@ -807,7 +802,7 @@ a {
     border-radius: 9999px;
     pointer-events: none;
     filter: blur(40px);
-    animation: site-cta-art-orb-float 9s ease-in-out infinite;
+    animation: none;
   }
 
   .site-cta-art-col__orb--primary {
@@ -861,7 +856,7 @@ a {
       transparent 72%
     );
     filter: blur(28px);
-    animation: site-cta-art-floor-pulse 5.5s ease-in-out infinite;
+    animation: none;
   }
 
   .site-cta-art-col__art {
@@ -899,7 +894,7 @@ a {
     background: color-mix(in srgb, var(--green) 32%, transparent);
     filter: blur(36px);
     pointer-events: none;
-    animation: site-cta-arc-halo-breathe 6s ease-in-out infinite;
+    animation: none;
   }
 
   .site-cta-arc-art__ring {
@@ -908,7 +903,7 @@ a {
     border-radius: 9999px;
     border: 1px solid color-mix(in srgb, #ffffff 14%, transparent);
     pointer-events: none;
-    animation: site-cta-arc-ring-glow 4.5s ease-in-out infinite;
+    animation: none;
   }
 
   .site-cta-arc-art__stack {
@@ -917,7 +912,7 @@ a {
   }
 
   .site-cta-arc-art__layer {
-    animation: site-cta-arc-layer-pulse 4s ease-in-out infinite;
+    animation: none;
   }
 
   .site-cta-arc-art__layer--0 {
@@ -960,10 +955,7 @@ a {
       color-mix(in srgb, var(--bg) 88%, transparent) 0%,
       color-mix(in srgb, var(--paper) 55%, transparent) 100%
     );
-    backdrop-filter: blur(10px);
-    animation: hero-stat-rise 0.68s cubic-bezier(0.22, 1, 0.36, 1) both,
-      hero-stat-border-glow 5.5s ease-in-out infinite;
-    animation-delay: 0s, 0.4s;
+    animation: hero-stat-rise 0.68s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
   .hero-stat-card::before {
@@ -984,44 +976,17 @@ a {
     opacity: 0.85;
   }
 
-  .hero-stat-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: linear-gradient(
-      105deg,
-      transparent 40%,
-      color-mix(in srgb, var(--green2) 18%, transparent) 50%,
-      transparent 60%
-    );
-    animation: hero-stat-sheen 2.8s ease-in-out infinite;
-    animation-delay: inherit;
-  }
-
   .hero-stat-card:nth-child(1) {
-    animation-delay: 0s, 0.35s;
-  }
-  .hero-stat-card:nth-child(1)::after {
-    animation-delay: 0.35s;
+    animation-delay: 0s;
   }
   .hero-stat-card:nth-child(2) {
-    animation-delay: 0.08s, 0.45s;
-  }
-  .hero-stat-card:nth-child(2)::after {
-    animation-delay: 0.9s;
+    animation-delay: 0.08s;
   }
   .hero-stat-card:nth-child(3) {
-    animation-delay: 0.16s, 0.55s;
-  }
-  .hero-stat-card:nth-child(3)::after {
-    animation-delay: 1.45s;
+    animation-delay: 0.16s;
   }
   .hero-stat-card:nth-child(4) {
-    animation-delay: 0.24s, 0.65s;
-  }
-  .hero-stat-card:nth-child(4)::after {
-    animation-delay: 2s;
+    animation-delay: 0.24s;
   }
 
   .hero-stat-card__value {
@@ -1050,8 +1015,6 @@ a {
     justify-content: center;
     line-height: 0;
     color: var(--green);
-    animation: hero-stat-star-alive 2.35s cubic-bezier(0.45, 0, 0.25, 1) infinite;
-    will-change: transform, filter;
   }
 
   .hero-stat-card__star svg {
@@ -1180,8 +1143,7 @@ a {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: hero-headline-accent-flow 5.5s ease-in-out infinite;
-    animation-delay: 0.55s;
+    background-position: 50% 50%;
     animation-fill-mode: backwards;
   }
 
@@ -1231,12 +1193,14 @@ a {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: hero-headline-accent-flow 6.5s ease-in-out infinite;
+    background-position: 50% 50%;
   }
 
-  /* Genre marquee — react-fast-marquee: hide overflow so no strip scrollbar */
+  /* Genre marquee — hide strip scrollbar; keep vertical wheel scroll on the page */
   .genre-marquee-section .rfm-marquee-container {
     overflow: hidden !important;
+    overscroll-behavior-x: contain;
+    overscroll-behavior-y: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
   }

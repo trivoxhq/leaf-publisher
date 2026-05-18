@@ -8,6 +8,8 @@ import {
   HiOutlineChevronRight,
 } from "react-icons/hi";
 
+import { useInView } from "@/hooks/use-in-view";
+
 const EASE = [0.22, 1, 0.36, 1] as const;
 const AUTOPLAY_MS = 6500;
 const CARD_GAP_PX = 16;
@@ -129,7 +131,7 @@ function TestimonialCard({
       />
       <span
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-white/6 backdrop-blur-sm"
+        className="pointer-events-none absolute inset-0 bg-white/6"
       />
       <div className="relative z-1 flex h-full flex-col">
         <StarRow />
@@ -153,6 +155,9 @@ function TestimonialCard({
 
 export function TestimonialsSection() {
   const reduceMotion = useReducedMotion();
+  const { ref: sectionRef, inView } = useInView<HTMLElement>({
+    rootMargin: "120px 0px",
+  });
   const slidesPerView = useSlidesPerView();
   const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLUListElement>(null);
@@ -205,7 +210,7 @@ export function TestimonialsSection() {
   }, [allVisible, maxActive]);
 
   useEffect(() => {
-    if (reduceMotion || paused) {
+    if (reduceMotion || paused || !inView || document.hidden) {
       if (timerRef.current) {
         clearInterval(timerRef.current);
         timerRef.current = null;
@@ -217,7 +222,7 @@ export function TestimonialsSection() {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [reduceMotion, paused, goNext]);
+  }, [reduceMotion, paused, inView, goNext]);
 
   const translateX = allVisible ? 0 : -active * stridePx;
 
@@ -235,6 +240,7 @@ export function TestimonialsSection() {
 
   return (
     <section
+      ref={sectionRef}
       className="cv-section relative overflow-x-clip border-t border-line/80 bg-bg text-text"
       aria-labelledby="testimonials-heading"
       aria-roledescription="carousel"

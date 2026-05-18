@@ -23,29 +23,16 @@ const STATS: readonly HeroStat[] = [
   { value: "4.9", label: "Rating", star: true },
 ];
 
-function DecorativeGlow({ reduceMotion }: { reduceMotion: boolean }) {
-  if (reduceMotion) {
-    return (
+function DecorativeGlow() {
+  return (
+    <>
       <div
         aria-hidden
         className="pointer-events-none absolute -left-32 top-0 h-80 w-80 rounded-full bg-green/15 blur-3xl"
       />
-    );
-  }
-
-  return (
-    <>
-      <motion.div
+      <div
         aria-hidden
-        className="pointer-events-none absolute -left-32 top-0 h-80 w-80 rounded-full bg-green/20 blur-3xl"
-        animate={{ opacity: [0.35, 0.55, 0.35], scale: [1, 1.08, 1] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-green2/15 blur-3xl"
-        animate={{ opacity: [0.25, 0.45, 0.25], scale: [1.05, 1, 1.05] }}
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        className="pointer-events-none absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-green2/12 blur-3xl"
       />
     </>
   );
@@ -97,7 +84,7 @@ export function HeroSection() {
       className="relative overflow-hidden bg-linear-to-b from-paper via-bg to-bg"
       aria-labelledby="hero-heading"
     >
-      <DecorativeGlow reduceMotion={!!reduceMotion} />
+      <DecorativeGlow />
 
       <div className="container-site relative py-14 sm:py-16 lg:py-20 xl:py-24">
         <div className="grid min-w-0 grid-cols-1 items-start gap-y-12 sm:gap-y-14 md:gap-y-16 xl:grid-cols-12 xl:gap-x-10 xl:gap-y-12 2xl:gap-x-14">

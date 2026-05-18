@@ -10,6 +10,8 @@ import {
 } from "framer-motion";
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi";
 
+import { useInView } from "@/hooks/use-in-view";
+
 const EASE = [0.22, 1, 0.36, 1] as const;
 const AUTO_MS = 6400;
 const SLIDE_DURATION = 0.48;
@@ -77,56 +79,19 @@ const slideVariants: Variants = {
   }),
 };
 
-function ShimmerTitle({
-  title,
-  active,
-  reduceMotion,
-}: {
-  title: string;
-  active: boolean;
-  reduceMotion: boolean;
-}) {
-  if (reduceMotion) {
-    return (
-      <h3 className="font-display text-[clamp(1.35rem,3.8vw+0.4rem,2.5rem)] font-bold leading-[1.1] tracking-tight text-text sm:text-[1.75rem] md:text-[2rem] lg:text-4xl">
-        {title}
-      </h3>
-    );
-  }
-
+function GalleryTitle({ title }: { title: string }) {
   return (
-    <h3 className="relative font-display text-[clamp(1.35rem,3.8vw+0.4rem,2.5rem)] font-bold leading-[1.1] tracking-tight sm:text-[1.75rem] md:text-[2rem] lg:text-4xl">
-      <span className="relative z-10 block text-text">{title}</span>
-      {active && (
-        <motion.span
-          aria-hidden
-          className="pointer-events-none absolute inset-0 z-20 overflow-hidden rounded-2xl sm:rounded-3xl"
-          initial={false}
-        >
-          <motion.span
-            className="absolute inset-y-0 w-1/2 bg-linear-to-r from-transparent via-green2/45 to-transparent"
-            animate={{ x: ["-120%", "220%"] }}
-            transition={{
-              duration: 2.4,
-              repeat: Infinity,
-              ease: "linear",
-              repeatDelay: 0.6,
-            }}
-          />
-        </motion.span>
-      )}
-      <motion.span
-        aria-hidden
-        className="pointer-events-none absolute -inset-x-1 -inset-y-1 z-0 rounded-2xl bg-linear-to-r from-green/12 via-green2/20 to-green/12 opacity-0 blur-md sm:-inset-x-1.5 sm:-inset-y-1.5 sm:rounded-3xl"
-        animate={active ? { opacity: [0.35, 0.75, 0.35], scale: [0.98, 1.02, 0.98] } : { opacity: 0 }}
-        transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
-      />
+    <h3 className="font-display text-[clamp(1.35rem,3.8vw+0.4rem,2.5rem)] font-bold leading-[1.1] tracking-tight text-text sm:text-[1.75rem] md:text-[2rem] lg:text-4xl">
+      {title}
     </h3>
   );
 }
 
 export function HeroBookGallery() {
   const reduceMotion = useReducedMotion();
+  const { ref: galleryRef, inView } = useInView<HTMLDivElement>({
+    rootMargin: "80px 0px",
+  });
   const [[page, direction], setPage] = useState<[number, number]>([0, 1]);
   const pausedRef = useRef(false);
   const thumbRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -169,7 +134,7 @@ export function HeroBookGallery() {
       stop();
       if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
       id = window.setInterval(() => {
-        if (pausedRef.current || document.hidden) return;
+        if (pausedRef.current || document.hidden || !inView) return;
         paginate(1);
       }, AUTO_MS);
     };
@@ -181,7 +146,7 @@ export function HeroBookGallery() {
       mq.removeEventListener("change", start);
       stop();
     };
-  }, [paginate]);
+  }, [paginate, inView]);
 
   const goTo = useCallback((i: number) => {
     setPage(([p, prevD]) => {
@@ -259,6 +224,7 @@ export function HeroBookGallery() {
 
   return (
     <div
+      ref={galleryRef}
       id="featured-gallery"
       className="relative flex scroll-mt-28 flex-col gap-6 sm:gap-7"
       onMouseEnter={() => {
@@ -320,7 +286,7 @@ export function HeroBookGallery() {
               onClick={() => paginate(-1)}
               whileHover={reduceMotion ? undefined : { scale: 1.06 }}
               whileTap={{ scale: 0.94 }}
-              className="flex size-9 items-center justify-center rounded-full border border-line/90 bg-bg/95 text-text shadow-md backdrop-blur-md transition-colors hover:border-green/40 hover:text-green sm:size-10"
+              className="flex size-9 items-center justify-center rounded-full border border-line/90 bg-bg text-text shadow-md transition-colors hover:border-green/40 hover:text-green sm:size-10"
             >
               <HiOutlineChevronLeft className="size-5 sm:size-[1.35rem]" strokeWidth={2} aria-hidden />
             </motion.button>
@@ -330,7 +296,7 @@ export function HeroBookGallery() {
               onClick={() => paginate(1)}
               whileHover={reduceMotion ? undefined : { scale: 1.06 }}
               whileTap={{ scale: 0.94 }}
-              className="flex size-9 items-center justify-center rounded-full border border-line/90 bg-bg/95 text-text shadow-md backdrop-blur-md transition-colors hover:border-green/40 hover:text-green sm:size-10"
+              className="flex size-9 items-center justify-center rounded-full border border-line/90 bg-bg text-text shadow-md transition-colors hover:border-green/40 hover:text-green sm:size-10"
             >
               <HiOutlineChevronRight className="size-5 sm:size-[1.35rem]" strokeWidth={2} aria-hidden />
             </motion.button>
@@ -338,7 +304,7 @@ export function HeroBookGallery() {
         </div>
       </div>
 
-      <div className="relative isolate min-h-[min(320px,72vw)] overflow-hidden rounded-[1.75rem] border border-line/80 bg-bg/60 shadow-[0_28px_80px_-36px_rgba(26,34,24,0.42),0_0_0_1px_rgba(255,255,255,0.06)_inset] ring-1 ring-white/20 backdrop-blur-xl sm:min-h-[min(340px,58vw)] sm:rounded-3xl md:min-h-[360px] lg:min-h-[380px]">
+      <div className="relative isolate min-h-[min(320px,72vw)] overflow-hidden rounded-[1.75rem] border border-line/80 bg-bg shadow-[0_28px_80px_-36px_rgba(26,34,24,0.42),0_0_0_1px_rgba(255,255,255,0.06)_inset] ring-1 ring-white/20 sm:min-h-[min(340px,58vw)] sm:rounded-3xl md:min-h-[360px] lg:min-h-[380px]">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-linear-to-br from-paper/80 via-bg/50 to-paper/70 opacity-[0.5] sm:opacity-[0.55]"
@@ -368,7 +334,7 @@ export function HeroBookGallery() {
             onClick={() => paginate(1)}
             whileHover={reduceMotion ? undefined : { scale: 1.05, x: 2 }}
             whileTap={{ scale: 0.95 }}
-            className="absolute right-1.5 top-1/2 z-20 hidden -translate-y-1/2 sm:right-3 sm:flex md:right-5 size-11 items-center justify-center rounded-full border border-line/80 bg-bg/90 text-text shadow-[0_8px_28px_-12px_rgba(26,34,24,0.25)] backdrop-blur-md transition-colors hover:border-green/35 hover:text-green md:size-12"
+            className="absolute right-1.5 top-1/2 z-20 hidden -translate-y-1/2 sm:right-3 sm:flex md:right-5 size-11 items-center justify-center rounded-full border border-line/80 bg-bg text-text shadow-[0_8px_28px_-12px_rgba(26,34,24,0.25)] transition-colors hover:border-green/35 hover:text-green md:size-12"
           >
             <HiOutlineChevronRight className="size-6 md:size-7" strokeWidth={1.75} aria-hidden />
           </motion.button>
@@ -412,11 +378,7 @@ export function HeroBookGallery() {
                     </span>
                   </div>
 
-                  <ShimmerTitle
-                    title={book.title}
-                    active={!reduceMotion}
-                    reduceMotion={!!reduceMotion}
-                  />
+                  <GalleryTitle title={book.title} />
 
                   <motion.p
                     className="max-w-none text-pretty text-sm leading-relaxed text-muted sm:max-w-lg sm:text-base md:max-w-xl md:text-[1.05rem] md:leading-relaxed"
@@ -472,7 +434,7 @@ export function HeroBookGallery() {
           </AnimatePresence>
         </div>
 
-        <div className="relative border-t border-line/70 bg-linear-to-b from-bg/30 via-paper/25 to-bg/50 px-2 pb-2 pt-2 backdrop-blur-md sm:px-3 sm:pb-3 sm:pt-3 md:px-4">
+        <div className="relative border-t border-line/70 bg-paper/90 px-2 pb-2 pt-2 sm:px-3 sm:pb-3 sm:pt-3 md:px-4">
           <p className="mb-2 px-2 text-[10px] font-medium uppercase tracking-wider text-muted/90 sm:hidden">
             Swipe titles or tap a cover
           </p>

@@ -46,75 +46,15 @@ function isActivePath(pathname: string, href: string) {
 }
 
 function TopBarTaglineIcon() {
-  const reduce = useReducedMotion();
-
   return (
     <motion.div
       aria-hidden
-      className="relative mr-2.5 flex size-7 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-white/[0.07] text-green2 shadow-[0_0_20px_-8px_rgba(246,157,57,0.55)] sm:size-8"
-      animate={
-        reduce
-          ? undefined
-          : {
-              y: [0, -2.5, 0],
-            }
-      }
-      transition={{
-        duration: 3.8,
-        repeat: Infinity,
-        ease: "easeInOut",
-      }}
+      className="relative mr-2.5 flex size-7 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.07] text-green2 shadow-[0_0_20px_-8px_rgba(246,157,57,0.55)] sm:size-8"
     >
-      <motion.div
-        animate={
-          reduce
-            ? undefined
-            : {
-                scale: [1, 1.06, 1],
-                opacity: [0.88, 1, 0.88],
-              }
-        }
-        transition={{
-          duration: 2.4,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      >
-        <HiOutlineNewspaper className="size-[15px] sm:size-4" />
-      </motion.div>
-      <motion.span
-        className="absolute -right-0.5 -top-0.5 text-white/90"
-        animate={
-          reduce
-            ? undefined
-            : {
-                rotate: [0, 12, -6, 0],
-                scale: [1, 1.12, 1],
-                opacity: [0.65, 1, 0.65],
-              }
-        }
-        transition={{
-          duration: 2.8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      >
+      <HiOutlineNewspaper className="size-[15px] sm:size-4" />
+      <span className="absolute -right-0.5 -top-0.5 text-white/90" aria-hidden>
         <HiOutlineSparkles className="size-2.5 sm:size-3" />
-      </motion.span>
-      {!reduce && (
-        <motion.span
-          aria-hidden
-          className="pointer-events-none absolute inset-0 rounded-lg bg-linear-to-r from-transparent via-white/12 to-transparent"
-          initial={{ x: "-120%", opacity: 0 }}
-          animate={{ x: ["-120%", "140%"], opacity: [0, 0.5, 0] }}
-          transition={{
-            duration: 3.2,
-            repeat: Infinity,
-            repeatDelay: 1.2,
-            ease: "easeInOut",
-          }}
-        />
-      )}
+      </span>
     </motion.div>
   );
 }
@@ -122,8 +62,8 @@ function TopBarTaglineIcon() {
 function TopBar() {
   return (
     <div
-      className="relative border-b border-white/6 text-white/90 backdrop-blur-xl backdrop-saturate-150"
-      style={{ backgroundColor: `color-mix(in srgb, ${TOP_BAR_BG} 88%, transparent)` }}
+      className="relative border-b border-white/6 text-white/90"
+      style={{ backgroundColor: TOP_BAR_BG }}
     >
       <div
         aria-hidden
@@ -262,11 +202,9 @@ function GetStartedButton({ className = "" }: { className?: string }) {
           aria-hidden
           className="absolute inset-0 bg-linear-to-r from-[#b01a38] via-green to-green2 opacity-95 transition-opacity group-hover:opacity-100"
         />
-        <motion.span
+        <span
           aria-hidden
-          className="absolute -inset-8 bg-[radial-gradient(circle_at_30%_40%,rgba(255,255,255,0.35),transparent_55%)] opacity-40 blur-2xl"
-          animate={{ x: ["-20%", "10%", "-20%"] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="pointer-events-none absolute -inset-8 bg-[radial-gradient(circle_at_30%_40%,rgba(255,255,255,0.28),transparent_55%)] opacity-35"
         />
         <span className="relative z-10 tracking-tight text-[#ffffff]">Get Started</span>
         <motion.span
@@ -457,16 +395,14 @@ export function SiteHeader() {
       </div>
 
       <motion.div
-        className={`relative transform-gpu border-b backdrop-saturate-150 transition-[background-color,box-shadow,backdrop-filter,border-color,color] ease-[cubic-bezier(0.22,1,0.36,1)] ${reduce ? "duration-150" : "duration-480"} ${
+        className={`relative transform-gpu border-b transition-[background-color,box-shadow,border-color,color] ease-[cubic-bezier(0.22,1,0.36,1)] ${reduce ? "duration-150" : "duration-480"} ${
           compact
-            ? "border-white/10 text-white shadow-[0_12px_40px_-18px_rgba(0,0,0,0.45)] backdrop-blur-xl"
-            : "border-line/80 bg-bg/90 text-text shadow-[0_4px_24px_-16px_rgba(26,34,24,0.06)] backdrop-blur-md"
+            ? "border-white/10 text-white shadow-[0_12px_40px_-18px_rgba(0,0,0,0.45)]"
+            : "border-line/80 bg-bg text-text shadow-[0_4px_24px_-16px_rgba(26,34,24,0.06)]"
         }`}
         style={
           compact
-            ? {
-                backgroundColor: `color-mix(in srgb, ${TOP_BAR_BG} 92%, transparent)`,
-              }
+            ? { backgroundColor: TOP_BAR_BG }
             : undefined
         }
       >
