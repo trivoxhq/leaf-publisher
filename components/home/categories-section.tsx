@@ -70,7 +70,7 @@ function CategoryCard({
       />
 
       <div className="relative z-2 flex h-full flex-col">
-        <div className="mb-5 flex size-11 items-center justify-center rounded-xl border border-white/15 bg-white/8 text-green shadow-sm transition-colors duration-300 group-hover:border-green/40 group-hover:bg-white/12">
+        <div className="mb-5 flex size-11 items-center justify-center rounded-xl border border-white/15 bg-white/8 text-[#F69D39] shadow-sm transition-colors duration-300 group-hover:border-[#F69D39]/40 group-hover:bg-white/12">
           <Icon className="size-5" aria-hidden />
         </div>
 
@@ -81,10 +81,10 @@ function CategoryCard({
           {formatTitleCount(category.titles)}
         </p>
 
-        <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-semibold text-green transition-colors group-hover:text-green2">
+        <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-semibold text-[#F69D39] transition-colors group-hover:text-[#F69D39]">
           Browse
           <HiArrowRight
-            className="size-4 transition-transform duration-300 group-hover:translate-x-1"
+            className="size-4 text-[#F69D39] transition-transform duration-300 group-hover:translate-x-1"
             aria-hidden
           />
         </span>
