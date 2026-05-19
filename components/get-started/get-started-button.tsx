@@ -10,6 +10,8 @@ type GetStartedButtonProps = {
   className?: string;
   plan?: string;
   type?: "button" | "submit";
+  /** Called after the modal opens (e.g. close mobile menu). */
+  onActivate?: () => void;
 };
 
 /** Primary CTA — opens the Get Started form modal. */
@@ -18,6 +20,7 @@ export function GetStartedButton({
   className = "",
   plan,
   type = "button",
+  onActivate,
 }: GetStartedButtonProps) {
   const reduce = useReducedMotion();
   const { openModal } = useGetStartedModal();
@@ -30,7 +33,10 @@ export function GetStartedButton({
     >
       <button
         type={type}
-        onClick={() => openModal(plan ? { plan } : undefined)}
+        onClick={() => {
+          openModal(plan ? { plan } : undefined);
+          onActivate?.();
+        }}
         className={className}
       >
         {children}

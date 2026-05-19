@@ -55,9 +55,16 @@ function LogoBlock() {
   );
 }
 
-function HeaderGetStartedButton({ className = "" }: { className?: string }) {
+function HeaderGetStartedButton({
+  className = "",
+  onActivate,
+}: {
+  className?: string;
+  onActivate?: () => void;
+}) {
   return (
     <GetStartedButton
+      onActivate={onActivate}
       className={`group relative inline-flex items-center justify-center overflow-hidden rounded-full px-5 py-2.5 text-sm font-semibold text-[#ffffff]! visited:text-[#ffffff]! hover:text-[#ffffff]! shadow-[0_8px_32px_-12px_rgba(133,199,39,0.75)] outline-none ring-1 ring-white/10 transition-shadow focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2 focus-visible:ring-offset-bg ${className}`}
     >
       <>
@@ -260,11 +267,7 @@ function ExpandedNavBar({
           />
 
           <motion.div className="hidden shrink-0 lg:flex">
-            <HeaderGetStartedButton className="max-[380px]:px-4 max-[380px]:py-2 max-[380px]:text-[13px]" />
-          </motion.div>
-
-          <motion.div className="flex shrink-0 lg:hidden">
-            <HeaderGetStartedButton className="max-[380px]:px-4 max-[380px]:py-2 max-[380px]:text-[13px]" />
+            <HeaderGetStartedButton />
           </motion.div>
 
           <MenuToggleButton
@@ -467,10 +470,6 @@ export function SiteHeader() {
                 </motion.button>
               </div>
 
-              <div className="px-6 pt-5">
-                <HeaderGetStartedButton className="w-full justify-center" />
-              </div>
-
               <motion.nav
                 className="flex flex-1 flex-col gap-1 overflow-y-auto px-4 pt-8 pb-10"
                 aria-label="Mobile primary"
@@ -501,6 +500,13 @@ export function SiteHeader() {
                   );
                 })}
               </motion.nav>
+
+              <div className="mt-auto shrink-0 border-t border-line px-6 pt-5 pb-2">
+                <HeaderGetStartedButton
+                  className="w-full justify-center"
+                  onActivate={close}
+                />
+              </div>
             </motion.div>
           </>
         )}
