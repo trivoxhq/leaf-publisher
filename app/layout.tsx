@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import { Cormorant_Garamond, Nunito } from "next/font/google";
+import { AppProviders } from "@/components/app-providers";
 import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
 
@@ -52,12 +53,16 @@ export default function RootLayout({
         suppressHydrationWarning
         className="flex min-h-full min-w-0 flex-col overflow-x-clip font-sans"
       >
-        <SiteHeader />
-        <main className="flex min-h-0 min-w-0 flex-1 flex-col overflow-x-clip">{children}</main>
-        <Suspense fallback={null}>
-          <SiteCtaBanner />
-          <SiteFooter />
-        </Suspense>
+        <AppProviders>
+          <SiteHeader />
+          <main className="flex min-h-0 min-w-0 flex-1 flex-col overflow-x-clip">
+            {children}
+          </main>
+          <Suspense fallback={null}>
+            <SiteCtaBanner />
+            <SiteFooter />
+          </Suspense>
+        </AppProviders>
       </body>
     </html>
   );

@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
+import { GetStartedButton } from "@/components/get-started/get-started-button";
 import {
   AnimatePresence,
   motion,
@@ -25,7 +25,6 @@ type Plan = {
   description: string;
   features: readonly string[];
   cta: string;
-  href: string;
   emphasized?: boolean;
 };
 
@@ -44,7 +43,6 @@ const PLANS: readonly Plan[] = [
       "Publish ebooks",
     ],
     cta: "Get Started Free",
-    href: "/get-started",
   },
   {
     id: "reader",
@@ -61,7 +59,6 @@ const PLANS: readonly Plan[] = [
       "Publish ebooks",
     ],
     cta: "Start 30-Day Free Trial",
-    href: "/get-started",
     emphasized: true,
   },
   {
@@ -78,7 +75,6 @@ const PLANS: readonly Plan[] = [
       "Priority editorial consideration",
     ],
     cta: "Start Publishing",
-    href: "/get-started",
   },
 ];
 
@@ -317,8 +313,8 @@ export function PricingSection() {
                   ))}
                 </ul>
 
-                <Link
-                  href={plan.href}
+                <GetStartedButton
+                  plan={plan.name}
                   className={`mt-8 inline-flex min-h-12 w-full items-center justify-center rounded-full px-5 text-sm font-semibold no-underline transition-colors sm:mt-9 ${
                     plan.emphasized
                       ? "bg-green text-white! shadow-[0_12px_36px_-14px_rgba(133,199,39,0.55)] hover:bg-green2 hover:text-white!"
@@ -326,7 +322,7 @@ export function PricingSection() {
                   }`}
                 >
                   {plan.cta}
-                </Link>
+                </GetStartedButton>
               </motion.article>
             );
           })}

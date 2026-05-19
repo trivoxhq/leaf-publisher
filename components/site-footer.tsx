@@ -9,6 +9,7 @@ import {
 } from "framer-motion";
 import { FaInstagram, FaYoutube } from "react-icons/fa";
 import { FaLinkedin, FaXTwitter } from "react-icons/fa6";
+import { useGetStartedModal } from "@/components/get-started/get-started-modal";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 /** Same as header top bar; footer uses a solid fill (no glass layers). */
@@ -30,7 +31,7 @@ const READERS = [
 ] as const;
 
 const AUTHORS = [
-  { label: "Start Publishing", href: "/get-started" },
+  { label: "Start Publishing", href: "#", openGetStarted: true as const },
   { label: "Pricing", href: "/pricing" },
   { label: "Royalties", href: "/royalties" },
   { label: "Author Dashboard", href: "/dashboard" },
@@ -74,12 +75,62 @@ function slugify(s: string) {
   return s.toLowerCase().replace(/\s+/g, "-");
 }
 
+type FooterLink = {
+  label: string;
+  href: string;
+  openGetStarted?: boolean;
+};
+
+function FooterLinkRow({
+  item,
+  reduce,
+}: {
+  item: FooterLink;
+  reduce: boolean | null;
+}) {
+  const { openModal } = useGetStartedModal();
+  const rowClassName =
+    "group flex min-h-10 w-full items-center gap-2 py-2.5 text-sm font-medium text-white/60 transition-colors duration-200 ease-out hover:text-white";
+
+  const content = (
+    <>
+      <span
+        aria-hidden
+        className="inline-flex w-3 shrink-0 items-center justify-center text-green transition-colors duration-200 ease-out group-hover:text-white"
+      >
+        <span className="size-1.5 shrink-0 rounded-full bg-current" />
+      </span>
+      <motion.span
+        className="min-w-0 flex-1 truncate border-b border-transparent pb-px text-left transition-[border-color,transform]"
+        whileHover={reduce ? undefined : { x: 4 }}
+        transition={{ type: "spring", stiffness: 400, damping: 28 }}
+      >
+        {item.label}
+      </motion.span>
+    </>
+  );
+
+  if (item.openGetStarted) {
+    return (
+      <button type="button" onClick={() => openModal()} className={rowClassName}>
+        {content}
+      </button>
+    );
+  }
+
+  return (
+    <Link href={item.href} className={rowClassName}>
+      {content}
+    </Link>
+  );
+}
+
 function FooterColumn({
   title,
   links,
 }: {
   title: string;
-  links: readonly { label: string; href: string }[];
+  links: readonly FooterLink[];
 }) {
   const reduce = useReducedMotion();
   const id = `footer-col-${slugify(title)}`;
@@ -99,25 +150,12 @@ function FooterColumn({
         viewport={{ once: true, margin: "-32px" }}
       >
         {links.map((item) => (
-          <motion.li key={item.href} variants={itemReveal} className="min-w-0">
-            <Link
-              href={item.href}
-              className="group flex min-h-10 w-full items-center gap-2 py-2.5 text-sm font-medium text-white/60 transition-colors duration-200 ease-out hover:text-white"
-            >
-              <span
-                aria-hidden
-                className="inline-flex w-3 shrink-0 items-center justify-center text-green transition-colors duration-200 ease-out group-hover:text-white"
-              >
-                <span className="size-1.5 shrink-0 rounded-full bg-current" />
-              </span>
-              <motion.span
-                className="min-w-0 flex-1 truncate border-b border-transparent pb-px transition-[border-color,transform]"
-                whileHover={reduce ? undefined : { x: 4 }}
-                transition={{ type: "spring", stiffness: 400, damping: 28 }}
-              >
-                {item.label}
-              </motion.span>
-            </Link>
+          <motion.li
+            key={item.openGetStarted ? item.label : item.href}
+            variants={itemReveal}
+            className="min-w-0"
+          >
+            <FooterLinkRow item={item} reduce={reduce} />
           </motion.li>
         ))}
       </motion.ul>

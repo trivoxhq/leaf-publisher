@@ -11,6 +11,7 @@ import {
 } from "framer-motion";
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import { HiOutlineMenuAlt3, HiX } from "react-icons/hi";
+import { GetStartedButton } from "@/components/get-started/get-started-button";
 
 const TOP_BAR_BG = "#181818";
 /** Scroll past this → show fixed compact bar. */
@@ -54,17 +55,12 @@ function LogoBlock() {
   );
 }
 
-function GetStartedButton({ className = "" }: { className?: string }) {
+function HeaderGetStartedButton({ className = "" }: { className?: string }) {
   return (
-    <motion.div
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      className={className.includes("w-full") ? "w-full" : undefined}
+    <GetStartedButton
+      className={`group relative inline-flex items-center justify-center overflow-hidden rounded-full px-5 py-2.5 text-sm font-semibold text-[#ffffff]! visited:text-[#ffffff]! hover:text-[#ffffff]! shadow-[0_8px_32px_-12px_rgba(133,199,39,0.75)] outline-none ring-1 ring-white/10 transition-shadow focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2 focus-visible:ring-offset-bg ${className}`}
     >
-      <Link
-        href="/get-started"
-        className={`group relative inline-flex items-center justify-center overflow-hidden rounded-full px-5 py-2.5 text-sm font-semibold text-[#ffffff]! visited:text-[#ffffff]! hover:text-[#ffffff]! shadow-[0_8px_32px_-12px_rgba(133,199,39,0.75)] outline-none ring-1 ring-white/10 transition-shadow focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2 focus-visible:ring-offset-bg ${className}`}
-      >
+      <>
         <span
           aria-hidden
           className="absolute inset-0 bg-linear-to-r from-[#6ba820] via-green to-green2 opacity-95 transition-opacity group-hover:opacity-100"
@@ -74,8 +70,8 @@ function GetStartedButton({ className = "" }: { className?: string }) {
           className="pointer-events-none absolute -inset-8 bg-[radial-gradient(circle_at_30%_40%,rgba(255,255,255,0.28),transparent_55%)] opacity-35"
         />
         <span className="relative z-10 tracking-tight text-[#ffffff]">Get Started</span>
-      </Link>
-    </motion.div>
+      </>
+    </GetStartedButton>
   );
 }
 
@@ -264,11 +260,11 @@ function ExpandedNavBar({
           />
 
           <motion.div className="hidden shrink-0 lg:flex">
-            <GetStartedButton className="max-[380px]:px-4 max-[380px]:py-2 max-[380px]:text-[13px]" />
+            <HeaderGetStartedButton className="max-[380px]:px-4 max-[380px]:py-2 max-[380px]:text-[13px]" />
           </motion.div>
 
           <motion.div className="flex shrink-0 lg:hidden">
-            <GetStartedButton className="max-[380px]:px-4 max-[380px]:py-2 max-[380px]:text-[13px]" />
+            <HeaderGetStartedButton className="max-[380px]:px-4 max-[380px]:py-2 max-[380px]:text-[13px]" />
           </motion.div>
 
           <MenuToggleButton
@@ -472,7 +468,7 @@ export function SiteHeader() {
               </div>
 
               <div className="px-6 pt-5">
-                <GetStartedButton className="w-full justify-center" />
+                <HeaderGetStartedButton className="w-full justify-center" />
               </div>
 
               <motion.nav

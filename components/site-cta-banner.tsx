@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { HiArrowRight } from "react-icons/hi";
+import { GetStartedButton } from "@/components/get-started/get-started-button";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -67,10 +68,7 @@ export function SiteCtaBanner() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: EASE, delay: reduce ? 0 : 0.4 }}
             >
-              <Link
-                href="/get-started"
-                className="site-cta-btn site-cta-btn--primary group text-[#ffffff]! visited:text-[#ffffff]! hover:text-[#ffffff]!"
-              >
+              <GetStartedButton className="site-cta-btn site-cta-btn--primary group text-[#ffffff]! visited:text-[#ffffff]! hover:text-[#ffffff]!">
                 <span className="text-[#ffffff]">Start Free Trial</span>
                 <span className="site-cta-btn__icon">
                   <HiArrowRight
@@ -78,7 +76,7 @@ export function SiteCtaBanner() {
                     aria-hidden
                   />
                 </span>
-              </Link>
+              </GetStartedButton>
               <Link href="/pricing" className="site-cta-btn site-cta-btn--secondary">
                 <span className="text-white">See Plans</span>
               </Link>

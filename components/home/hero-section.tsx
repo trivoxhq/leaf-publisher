@@ -10,6 +10,7 @@ import {
 import { HiArrowRight } from "react-icons/hi";
 import { FaStar } from "react-icons/fa";
 
+import { GetStartedButton } from "@/components/get-started/get-started-button";
 import { HeroBookGallery } from "@/components/home/hero-book-gallery";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -130,14 +131,9 @@ export function HeroSection() {
               variants={softItemVariants}
               className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4"
             >
-              <motion.div whileHover={{ scale: reduceMotion ? 1 : 1.02 }} whileTap={{ scale: 0.98 }}>
-                <Link
-                  href="/get-started"
-                  className="inline-flex h-12 w-full items-center justify-center rounded-full bg-green px-8 text-sm font-semibold text-[#ffffff]! visited:text-[#ffffff]! hover:bg-green2 hover:text-[#ffffff]! sm:w-auto shadow-[0_12px_40px_-16px_rgba(133,199,39,0.55)] transition-colors"
-                >
-                  Start for Free
-                </Link>
-              </motion.div>
+              <GetStartedButton className="inline-flex h-12 w-full items-center justify-center rounded-full bg-green px-8 text-sm font-semibold text-[#ffffff]! visited:text-[#ffffff]! hover:bg-green2 hover:text-[#ffffff]! sm:w-auto shadow-[0_12px_40px_-16px_rgba(133,199,39,0.55)] transition-colors">
+                Start for Free
+              </GetStartedButton>
               <Link
                 href="#featured-gallery"
                 className="group inline-flex h-12 w-full items-center justify-center gap-1.5 rounded-full border border-line bg-bg/90 px-6 text-sm font-semibold text-text backdrop-blur-sm transition-colors hover:border-green/40 hover:bg-paper sm:w-auto"
