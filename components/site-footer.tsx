@@ -21,6 +21,7 @@ const SOCIAL = [
 ] as const;
 
 const READERS = [
+  { label: "Categories", href: "/categories" },
   { label: "Browse Library", href: "/browse" },
   { label: "New Releases", href: "/new-releases" },
   { label: "Bestsellers", href: "/bestsellers" },

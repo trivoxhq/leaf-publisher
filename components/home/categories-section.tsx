@@ -345,6 +345,18 @@ export function CategoriesSection() {
             Every taste, every mood — our curators pick the finest across every
             genre.
           </motion.p>
+          <motion.div variants={itemVariants} className="mt-6">
+            <Link
+              href="/categories"
+              className="group inline-flex items-center gap-1.5 text-sm font-semibold text-green transition-colors hover:text-green2"
+            >
+              Explore all categories
+              <HiArrowRight
+                className="size-4 transition-transform group-hover:translate-x-0.5"
+                aria-hidden
+              />
+            </Link>
+          </motion.div>
         </motion.div>
 
         <div className="mt-10 grid grid-cols-1 items-stretch gap-8 sm:mt-12 lg:mt-14 lg:grid-cols-2 lg:gap-8 xl:gap-10">
