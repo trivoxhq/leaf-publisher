@@ -14,6 +14,14 @@ type GetStartedButtonProps = {
   onActivate?: () => void;
 };
 
+function wrapperWidthClass(className: string): string | undefined {
+  const hasFull = /\bw-full\b/.test(className);
+  const hasSmAuto = /\bsm:w-auto\b/.test(className);
+  if (hasFull && hasSmAuto) return "w-full sm:w-auto";
+  if (hasFull) return "w-full";
+  return undefined;
+}
+
 /** Primary CTA — opens the Get Started form modal. */
 export function GetStartedButton({
   children,
@@ -29,7 +37,7 @@ export function GetStartedButton({
     <motion.div
       whileHover={reduce ? undefined : { scale: 1.02 }}
       whileTap={reduce ? undefined : { scale: 0.98 }}
-      className={className.includes("w-full") ? "w-full" : undefined}
+      className={wrapperWidthClass(className)}
     >
       <button
         type={type}

@@ -16,7 +16,7 @@ import {
   MISSION_VISION,
   PORTFOLIO_ITEMS,
   TEAM_ROLES,
-  WHY_CHOOSE_CARDS,
+  OFFERED_SERVICES,
 } from "@/components/about/about-data";
 import { GetStartedButton } from "@/components/get-started/get-started-button";
 
@@ -41,13 +41,17 @@ function DecorativeGlow() {
 function Eyebrow({
   children,
   variant = "light",
+  align = "center",
 }: {
   children: React.ReactNode;
   variant?: "light" | "dark";
+  align?: "center" | "left";
 }) {
   const isDark = variant === "dark";
   return (
-    <p className="mb-4 flex justify-center sm:mb-5">
+    <p
+      className={`mb-4 sm:mb-5 ${align === "center" ? "flex justify-center" : ""}`}
+    >
       <span
         className={
           isDark
@@ -201,14 +205,14 @@ export function AboutPage() {
 
             <motion.div
               variants={softItemVariants}
-              className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:justify-center sm:gap-4"
+              className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
             >
               <GetStartedButton className="inline-flex h-12 w-full items-center justify-center rounded-full bg-green px-8 text-sm font-semibold text-[#ffffff]! visited:text-[#ffffff]! hover:bg-green2 hover:text-[#ffffff]! sm:w-auto shadow-[0_12px_40px_-16px_rgba(133,199,39,0.55)] transition-colors">
                 Get Started
               </GetStartedButton>
               <Link
                 href="/services"
-                className="group inline-flex h-12 w-full items-center justify-center gap-1.5 rounded-full border border-line bg-bg/90 px-6 text-sm font-semibold text-text backdrop-blur-sm transition-colors hover:border-green/40 hover:bg-paper sm:w-auto"
+                className="group inline-flex h-12 w-full shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-full border border-line bg-bg/90 px-6 text-sm font-semibold text-text backdrop-blur-sm transition-colors hover:border-green/40 hover:bg-paper sm:w-auto"
               >
                 Explore Services
                 <HiArrowRight
@@ -388,11 +392,11 @@ export function AboutPage() {
         </div>
       </section>
 
-      {/* 6. Why Choose Us */}
+      {/* 6. Our Services */}
       <section
-        id="why-choose-us"
+        id="our-services"
         className="cv-section border-t border-line/80 bg-paper text-text"
-        aria-labelledby="about-why-heading"
+        aria-labelledby="about-services-heading"
       >
         <div className="container-site section-y">
           <motion.div
@@ -402,25 +406,25 @@ export function AboutPage() {
             transition={{ duration: reduceMotion ? 0.2 : 0.5, ease: EASE }}
           >
             <SectionHeader
-              id="about-why-heading"
-              eyebrow="Why Leaf Publisher"
+              id="about-services-heading"
+              eyebrow="What We Offer"
               title={
                 <span className="site-cta-banner__line block">
-                  Why Choose <span className="hero-heading__accent">Leaf Publisher?</span>
+                  Services We <span className="hero-heading__accent">Provide</span>
                 </span>
               }
-              subtitle="A trusted ebook creation partner for authors who want their work to feel polished, powerful, and ready for readers."
+              subtitle="Professional ebook support across writing, editing, design, and formatting — everything you need to publish with confidence."
             />
           </motion.div>
 
           <motion.ul
-            className="mt-10 grid list-none grid-cols-1 gap-4 p-0 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:mt-14 lg:grid-cols-3 lg:gap-6"
+            className="mt-10 grid list-none grid-cols-1 gap-4 p-0 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:mt-14 lg:grid-cols-4 lg:gap-6"
             variants={containerVariants}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-40px" }}
           >
-            {WHY_CHOOSE_CARDS.map((card) => {
+            {OFFERED_SERVICES.map((card) => {
               const Icon = card.icon;
               return (
                 <motion.li key={card.title} variants={itemVariants}>
@@ -600,7 +604,7 @@ export function AboutPage() {
               viewport={{ once: true, margin: "-48px" }}
               transition={{ duration: reduceMotion ? 0.2 : 0.5, ease: EASE }}
             >
-              <Eyebrow>Collaboration</Eyebrow>
+              <Eyebrow align="left">Collaboration</Eyebrow>
               <h2
                 id="about-teamwork-heading"
                 className="site-cta-banner__headline text-text"

@@ -37,6 +37,7 @@ const AUTHORS = [
 
 const COMPANY = [
   { label: "About Us", href: "/about" },
+  { label: "Contact Us", href: "/contact" },
   { label: "Careers", href: "/careers" },
   { label: "Press", href: "/press" },
   { label: "Help Centre", href: "/help" },

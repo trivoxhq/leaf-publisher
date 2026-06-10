@@ -1,10 +1,11 @@
 import type { IconType } from "react-icons";
 import {
   HiOutlineAdjustments,
-  HiOutlineGlobeAlt,
-  HiOutlineLightningBolt,
+  HiOutlineClipboardCheck,
   HiOutlinePencil,
+  HiOutlinePhotograph,
   HiOutlineSparkles,
+  HiOutlineTemplate,
   HiOutlineTrendingUp,
 } from "react-icons/hi";
 
@@ -51,24 +52,31 @@ export type ServiceCard = {
   icon: IconType;
 };
 
-export const WHY_CHOOSE_CARDS: readonly ServiceCard[] = [
+/** Core services Leaf Publisher offers — edit titles and copy here. */
+export const OFFERED_SERVICES: readonly ServiceCard[] = [
   {
-    title: "Authentic Book Narratives",
+    title: "eBook Writing",
     description:
-      "Need help expressing your book's message clearly? We help turn your ideas into original, well-structured content with a voice that feels natural and true to your purpose.",
+      "Turn your ideas into a complete manuscript with clear structure, engaging chapters, and a voice that feels true to your message — from first outline to finished draft.",
     icon: HiOutlinePencil,
   },
   {
-    title: "Captivating Ebook Content",
+    title: "Editing & Proof-Reading",
     description:
-      "Want content that keeps readers engaged? Our writing and editing support helps shape strong chapters, smooth flow, clear messaging, and persuasive storytelling.",
-    icon: HiOutlineLightningBolt,
+      "Polish every page with professional editing and proof-reading that improves clarity, flow, grammar, and consistency so your book reads smoothly from start to finish.",
+    icon: HiOutlineClipboardCheck,
   },
   {
-    title: "Stronger Online Presence",
+    title: "Cover Design",
     description:
-      "Looking to build your author brand or ebook visibility? We support publishing direction, presentation, and content strategy so your book can make a stronger impression online.",
-    icon: HiOutlineGlobeAlt,
+      "Make a strong first impression with custom cover design crafted to reflect your genre, audience, and story — professional visuals that invite readers to open your book.",
+    icon: HiOutlinePhotograph,
+  },
+  {
+    title: "Book Formatting",
+    description:
+      "Prepare your ebook for launch with clean, reader-friendly formatting — proper layout, typography, chapter styling, and export-ready files built for digital publishing.",
+    icon: HiOutlineTemplate,
   },
 ] as const;
 
@@ -78,11 +86,11 @@ export type PortfolioItem = {
 };
 
 export const PORTFOLIO_ITEMS: readonly PortfolioItem[] = [
-  { title: "Book Cover Design", imageSrc: "/e-books/demo-ebook1.png" },
-  { title: "Ebook Formatting", imageSrc: "/e-books/demo-ebook2.png" },
-  { title: "Fiction Writing", imageSrc: "/e-books/demo-ebook3.png" },
-  { title: "Business Ebook", imageSrc: "/e-books/demo-ebook4.jpg" },
-  { title: "Author Branding", imageSrc: "/e-books/demo-ebook5.jpg" },
+  { title: "eBook Writing", imageSrc: "/e-books/demo-ebook3.png" },
+  { title: "Editing & Proof-Reading", imageSrc: "/e-books/demo-ebook2.png" },
+  { title: "Cover Design", imageSrc: "/e-books/demo-ebook1.png" },
+  { title: "Book Formatting", imageSrc: "/e-books/demo-ebook4.jpg" },
+  { title: "Published Ebook", imageSrc: "/e-books/demo-ebook5.jpg" },
 ] as const;
 
 export type TeamRole = {

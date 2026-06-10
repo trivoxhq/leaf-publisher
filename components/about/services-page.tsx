@@ -9,7 +9,7 @@ import {
 } from "framer-motion";
 import { HiArrowRight } from "react-icons/hi";
 
-import { WHY_CHOOSE_CARDS } from "@/components/about/about-data";
+import { OFFERED_SERVICES } from "@/components/about/about-data";
 import { GetStartedButton } from "@/components/get-started/get-started-button";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -77,13 +77,13 @@ export function ServicesPage() {
               editing, design, formatting, and publishing support tailored to
               your book goals.
             </p>
-            <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:justify-center sm:gap-4">
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
               <GetStartedButton className="inline-flex h-12 w-full items-center justify-center rounded-full bg-green px-8 text-sm font-semibold text-[#ffffff]! visited:text-[#ffffff]! hover:bg-green2 hover:text-[#ffffff]! sm:w-auto shadow-[0_12px_40px_-16px_rgba(133,199,39,0.55)] transition-colors">
                 Get Started
               </GetStartedButton>
               <Link
                 href="/about"
-                className="group inline-flex h-12 w-full items-center justify-center gap-1.5 rounded-full border border-line bg-bg/90 px-6 text-sm font-semibold text-text backdrop-blur-sm transition-colors hover:border-green/40 hover:bg-paper sm:w-auto"
+                className="group inline-flex h-12 w-full shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-full border border-line bg-bg/90 px-6 text-sm font-semibold text-text backdrop-blur-sm transition-colors hover:border-green/40 hover:bg-paper sm:w-auto"
               >
                 About Us
                 <HiArrowRight
@@ -119,13 +119,13 @@ export function ServicesPage() {
           </motion.header>
 
           <motion.ul
-            className="mt-10 grid list-none grid-cols-1 gap-4 p-0 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6"
+            className="mt-10 grid list-none grid-cols-1 gap-4 p-0 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4 lg:gap-6"
             variants={containerVariants}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-40px" }}
           >
-            {WHY_CHOOSE_CARDS.map((card) => {
+            {OFFERED_SERVICES.map((card) => {
               const Icon = card.icon;
               return (
                 <motion.li key={card.title} variants={itemVariants}>

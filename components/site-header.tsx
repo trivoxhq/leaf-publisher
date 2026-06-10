@@ -27,6 +27,7 @@ const NAV_ITEMS = [
   { href: "/browse", label: "Browse" },
   { href: "/categories", label: "Categories" },
   { href: "/for-authors", label: "For Authors" },
+  { href: "/contact", label: "Contact" },
   { href: "/pricing", label: "Pricing" },
 ] as const;
 
