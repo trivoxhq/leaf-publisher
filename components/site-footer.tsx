@@ -38,10 +38,9 @@ const AUTHORS = [
 const COMPANY = [
   { label: "About Us", href: "/about" },
   { label: "Contact Us", href: "/contact" },
-  { label: "Careers", href: "/careers" },
   { label: "Press", href: "/press" },
-  { label: "Help Centre", href: "/help" },
-  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Help Centre", href: "/help-centre" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
 ] as const;
 
 const sectionReveal: Variants = {
