@@ -23,6 +23,7 @@ const NAV_TRANSITION_EASE = [0.22, 1, 0.36, 1] as const;
 
 const NAV_ITEMS = [
   { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
   { href: "/browse", label: "Browse" },
   { href: "/categories", label: "Categories" },
   { href: "/for-authors", label: "For Authors" },
