@@ -566,6 +566,18 @@ export function CategoriesPage() {
                   Browse Categories
                 </a>
                 <Link
+                  href="/bestsellers"
+                  className="inline-flex h-12 items-center justify-center rounded-full border border-line bg-bg px-8 text-sm font-semibold text-text transition-colors hover:border-green/40 hover:bg-paper"
+                >
+                  Browse Bestsellers
+                </Link>
+                <Link
+                  href="/new-releases"
+                  className="inline-flex h-12 items-center justify-center rounded-full border border-line bg-bg px-8 text-sm font-semibold text-text transition-colors hover:border-green/40 hover:bg-paper"
+                >
+                  New Releases
+                </Link>
+                <Link
                   href="/for-authors"
                   className="inline-flex h-12 items-center justify-center rounded-full border border-line bg-bg px-8 text-sm font-semibold text-text transition-colors hover:border-green/40 hover:bg-paper"
                 >

@@ -203,16 +203,34 @@ export function DualAudienceSection() {
                     delay: reduceMotion ? 0 : 0.2,
                   }}
                 >
-                  <Link
-                    href={audience.href}
-                    className="group/btn inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-green px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_40px_-16px_rgba(133,199,39,0.5)] outline-none ring-1 ring-white/10 transition-[background-color,box-shadow,transform] duration-200 hover:bg-green2 hover:shadow-[0_14px_44px_-14px_rgba(133,199,39,0.55)] focus-visible:ring-2 focus-visible:ring-green2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#181818] active:scale-[0.98]"
-                  >
-                    {audience.cta}
-                    <HiArrowRight
-                      className="size-4 transition-transform duration-200 group-hover/btn:translate-x-0.5"
-                      aria-hidden
-                    />
-                  </Link>
+                  <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                    <Link
+                      href={audience.href}
+                      className="group/btn inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-green px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_40px_-16px_rgba(133,199,39,0.5)] outline-none ring-1 ring-white/10 transition-[background-color,box-shadow,transform] duration-200 hover:bg-green2 hover:shadow-[0_14px_44px_-14px_rgba(133,199,39,0.55)] focus-visible:ring-2 focus-visible:ring-green2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#181818] active:scale-[0.98]"
+                    >
+                      {audience.cta}
+                      <HiArrowRight
+                        className="size-4 transition-transform duration-200 group-hover/btn:translate-x-0.5"
+                        aria-hidden
+                      />
+                    </Link>
+                    {audience.id === "authors" ? (
+                      <>
+                        <Link
+                          href="/success-stories"
+                          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/15 bg-white/8 px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-green/40 hover:bg-white/12 hover:text-green2"
+                        >
+                          Success Stories
+                        </Link>
+                        <Link
+                          href="/royalties"
+                          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/15 bg-white/8 px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-green/40 hover:bg-white/12 hover:text-green2"
+                        >
+                          Author Royalties
+                        </Link>
+                      </>
+                    ) : null}
+                  </div>
                 </motion.div>
               </div>
             </motion.article>

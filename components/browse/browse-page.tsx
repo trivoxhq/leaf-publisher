@@ -409,8 +409,9 @@ export function BrowsePage() {
 
           <div className="mt-10 -mx-4 flex gap-4 overflow-x-auto px-4 pb-2 scrollbar-none sm:mt-12 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4 lg:gap-6">
             {NEW_NOTEWORTHY.map((card) => (
-              <article
+              <Link
                 key={card.title}
+                href="/new-releases"
                 className={`group relative min-w-[min(18rem,calc(100vw-2.5rem))] shrink-0 overflow-hidden rounded-3xl border border-line/70 bg-linear-to-br p-6 shadow-[0_20px_60px_-36px_rgba(26,34,24,0.12)] transition-all duration-300 hover:-translate-y-1 hover:border-green/35 hover:shadow-[0_28px_70px_-32px_rgba(133,199,39,0.18)] sm:min-w-0 sm:p-7 ${card.accent}`}
               >
                 <h3 className="font-display text-xl font-bold tracking-tight text-text sm:text-[1.35rem]">
@@ -426,7 +427,7 @@ export function BrowsePage() {
                     aria-hidden
                   />
                 </span>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -561,6 +562,18 @@ export function BrowsePage() {
                   className="inline-flex h-12 items-center justify-center rounded-full bg-green px-8 text-sm font-semibold text-[#ffffff]! shadow-[0_12px_40px_-16px_rgba(133,199,39,0.55)] transition-colors hover:bg-green2"
                 >
                   Explore Categories
+                </Link>
+                <Link
+                  href="/bestsellers"
+                  className="inline-flex h-12 items-center justify-center rounded-full border border-line bg-bg px-8 text-sm font-semibold text-text transition-colors hover:border-green/40 hover:bg-paper"
+                >
+                  Browse Bestsellers
+                </Link>
+                <Link
+                  href="/new-releases"
+                  className="inline-flex h-12 items-center justify-center rounded-full border border-line bg-bg px-8 text-sm font-semibold text-text transition-colors hover:border-green/40 hover:bg-paper"
+                >
+                  New Releases
                 </Link>
                 <Link
                   href="/for-authors"

@@ -321,6 +321,13 @@ export function PricingSection() {
                   >
                     {plan.cta}
                   </Link>
+                ) : plan.id === "free" ? (
+                  <Link
+                    href="/free-titles"
+                    className="mt-8 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-white/15 bg-white/8 px-5 text-sm font-semibold text-white! no-underline transition-colors hover:border-green/40 hover:bg-white/12 hover:text-green2! sm:mt-9"
+                  >
+                    {plan.cta}
+                  </Link>
                 ) : (
                   <GetStartedButton
                     plan={plan.name}
@@ -337,6 +344,19 @@ export function PricingSection() {
             );
           })}
         </div>
+
+        <motion.p
+          className="mt-10 text-center text-sm text-white/65 sm:mt-12"
+          initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-32px" }}
+          transition={{ duration: reduceMotion ? 0.2 : 0.45, ease: EASE }}
+        >
+          Royalty rates depend on platform, pricing model, and final agreement.{" "}
+          <Link href="/royalties" className="font-semibold text-green2 hover:text-green">
+            Learn how royalties may work
+          </Link>
+        </motion.p>
       </div>
     </section>
   );

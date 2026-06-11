@@ -45,7 +45,7 @@ const SLIDER_BOOKS = [
     genre: "Romance",
     badge: "Bestseller",
     price: "$2.49",
-    href: "/books/salt-and-shadow",
+    href: "/bestsellers",
     coverSrc: "/e-books/demo-ebook2.png",
   },
   {
@@ -55,7 +55,7 @@ const SLIDER_BOOKS = [
     genre: "Sci-Fi",
     badge: "New Release",
     price: "$4.99",
-    href: "/books/the-atlas-protocol",
+    href: "/new-releases",
     coverSrc: "/e-books/demo-ebook3.png",
   },
   {

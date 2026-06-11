@@ -25,7 +25,7 @@ const READERS = [
   { label: "Browse Library", href: "/browse" },
   { label: "New Releases", href: "/new-releases" },
   { label: "Bestsellers", href: "/bestsellers" },
-  { label: "Free Titles", href: "/free" },
+  { label: "Free Titles", href: "/free-titles" },
   { label: "Gift Cards", href: "/gift-cards" },
 ] as const;
 
@@ -33,7 +33,6 @@ const AUTHORS = [
   { label: "For Authors", href: "/for-authors" },
   { label: "Pricing", href: "/pricing" },
   { label: "Royalties", href: "/royalties" },
-  { label: "Author Dashboard", href: "/dashboard" },
   { label: "Success Stories", href: "/success-stories" },
 ] as const;
 

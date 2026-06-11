@@ -1,21 +1,7 @@
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
-import { Suspense } from "react";
 import { Cormorant_Garamond, Nunito } from "next/font/google";
 import { AppProviders } from "@/components/app-providers";
-import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
-
-const SiteCtaBanner = dynamic(
-  () =>
-    import("@/components/site-cta-banner").then((m) => m.SiteCtaBanner),
-  { loading: () => null }
-);
-
-const SiteFooter = dynamic(
-  () => import("@/components/site-footer").then((m) => m.SiteFooter),
-  { loading: () => null }
-);
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -53,16 +39,7 @@ export default function RootLayout({
         suppressHydrationWarning
         className="flex min-h-full min-w-0 flex-col overflow-x-clip font-sans"
       >
-        <AppProviders>
-          <SiteHeader />
-          <main className="flex min-h-0 min-w-0 flex-1 flex-col overflow-x-clip">
-            {children}
-          </main>
-          <Suspense fallback={null}>
-            <SiteCtaBanner />
-            <SiteFooter />
-          </Suspense>
-        </AppProviders>
+        <AppProviders>{children}</AppProviders>
       </body>
     </html>
   );

@@ -897,6 +897,18 @@ export function ForAuthorsPage() {
                 >
                   View Pricing
                 </Link>
+                <Link
+                  href="/royalties"
+                  className="inline-flex h-12 items-center justify-center rounded-full border border-line bg-bg px-8 text-sm font-semibold text-text transition-colors hover:border-green/40 hover:bg-paper"
+                >
+                  Understand Royalties
+                </Link>
+                <Link
+                  href="/success-stories"
+                  className="inline-flex h-12 items-center justify-center rounded-full border border-line bg-bg px-8 text-sm font-semibold text-text transition-colors hover:border-green/40 hover:bg-paper"
+                >
+                  Success Stories
+                </Link>
               </div>
             </BookPage>
           </motion.div>

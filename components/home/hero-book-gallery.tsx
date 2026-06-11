@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   AnimatePresence,
@@ -240,9 +241,12 @@ export function HeroBookGallery() {
             <span className="h-px w-6 shrink-0 rounded-full bg-linear-to-r from-transparent to-green sm:w-8" aria-hidden />
             Featured gallery
           </p>
-          <p className="mt-2 font-display text-[clamp(1.125rem,2.5vw+0.5rem,1.5rem)] font-bold tracking-tight text-text sm:mt-1.5 sm:text-xl md:text-2xl">
+          <Link
+            href="/bestsellers"
+            className="mt-2 inline-block font-display text-[clamp(1.125rem,2.5vw+0.5rem,1.5rem)] font-bold tracking-tight text-text transition-colors hover:text-green sm:mt-1.5 sm:text-xl md:text-2xl"
+          >
             Trending on Leaf
-          </p>
+          </Link>
         </div>
         <div className="flex flex-wrap items-center justify-between gap-3 sm:flex-nowrap sm:justify-end sm:gap-2">
           <div
