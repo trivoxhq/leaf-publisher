@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { GetStartedButton } from "@/components/get-started/get-started-button";
 import {
@@ -313,16 +314,25 @@ export function PricingSection() {
                   ))}
                 </ul>
 
-                <GetStartedButton
-                  plan={plan.name}
-                  className={`mt-8 inline-flex min-h-12 w-full items-center justify-center rounded-full px-5 text-sm font-semibold no-underline transition-colors sm:mt-9 ${
-                    plan.emphasized
-                      ? "bg-green text-white! shadow-[0_12px_36px_-14px_rgba(133,199,39,0.55)] hover:bg-green2 hover:text-white!"
-                      : "border border-white/15 bg-white/8 text-white! visited:text-white! hover:border-green/40 hover:bg-white/12 hover:text-green2!"
-                  }`}
-                >
-                  {plan.cta}
-                </GetStartedButton>
+                {plan.id === "publisher" ? (
+                  <Link
+                    href="/for-authors"
+                    className="mt-8 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-white/15 bg-white/8 px-5 text-sm font-semibold text-white! no-underline transition-colors hover:border-green/40 hover:bg-white/12 hover:text-green2! sm:mt-9"
+                  >
+                    {plan.cta}
+                  </Link>
+                ) : (
+                  <GetStartedButton
+                    plan={plan.name}
+                    className={`mt-8 inline-flex min-h-12 w-full items-center justify-center rounded-full px-5 text-sm font-semibold no-underline transition-colors sm:mt-9 ${
+                      plan.emphasized
+                        ? "bg-green text-white! shadow-[0_12px_36px_-14px_rgba(133,199,39,0.55)] hover:bg-green2 hover:text-white!"
+                        : "border border-white/15 bg-white/8 text-white! visited:text-white! hover:border-green/40 hover:bg-white/12 hover:text-green2!"
+                    }`}
+                  >
+                    {plan.cta}
+                  </GetStartedButton>
+                )}
               </motion.article>
             );
           })}

@@ -253,7 +253,7 @@ export function CategoriesPage() {
                   Explore Categories
                 </a>
                 <Link
-                  href="/contact"
+                  href="/for-authors"
                   className="group inline-flex h-12 w-full shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-full border border-line bg-bg/90 px-6 text-sm font-semibold text-text backdrop-blur-sm transition-colors hover:border-green/40 hover:bg-paper sm:w-auto"
                 >
                   Start Publishing
@@ -466,7 +466,7 @@ export function CategoriesPage() {
             transition={{ duration: 0.4, ease: EASE }}
           >
             <Link
-              href="/contact"
+              href="/for-authors"
               className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-green px-8 text-sm font-semibold text-[#ffffff]! shadow-[0_12px_40px_-16px_rgba(133,199,39,0.55)] transition-colors hover:bg-green2"
             >
               Start Your Book Project
@@ -566,7 +566,7 @@ export function CategoriesPage() {
                   Browse Categories
                 </a>
                 <Link
-                  href="/contact"
+                  href="/for-authors"
                   className="inline-flex h-12 items-center justify-center rounded-full border border-line bg-bg px-8 text-sm font-semibold text-text transition-colors hover:border-green/40 hover:bg-paper"
                 >
                   Start Publishing

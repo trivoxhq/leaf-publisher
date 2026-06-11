@@ -30,6 +30,7 @@ const READERS = [
 ] as const;
 
 const AUTHORS = [
+  { label: "For Authors", href: "/for-authors" },
   { label: "Pricing", href: "/pricing" },
   { label: "Royalties", href: "/royalties" },
   { label: "Author Dashboard", href: "/dashboard" },

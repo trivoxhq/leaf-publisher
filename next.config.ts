@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
         destination: "/help-centre",
         permanent: true,
       },
+      {
+        source: "/authors",
+        destination: "/for-authors",
+        permanent: true,
+      },
     ];
   },
 };

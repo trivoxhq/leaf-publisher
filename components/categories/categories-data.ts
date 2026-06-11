@@ -196,5 +196,4 @@ export const HERO_FLOATING_TILES = [
   { label: "Business", image: "/e-books/demo-ebook4.jpg", rotate: "rotate-3", offset: "-translate-y-3" },
   { label: "Self-Help", image: "/e-books/demo-ebook2.png", rotate: "-rotate-2", offset: "translate-y-1" },
   { label: "Memoir", image: "/e-books/demo-ebook5.jpg", rotate: "rotate-6", offset: "-translate-y-4" },
-  { label: "Education", image: "/e-books/demo-ebook3.png", rotate: "-rotate-3", offset: "translate-y-3" },
 ] as const;

@@ -29,25 +29,25 @@ const CATEGORIES = [
   {
     name: "Fiction",
     titles: "84,300",
-    href: "/browse/fiction",
+    href: "/browse",
     icon: HiOutlineBookOpen,
   },
   {
     name: "Self-Development",
     titles: "31,800",
-    href: "/browse/self-development",
+    href: "/browse",
     icon: HiOutlineLightBulb,
   },
   {
     name: "Science & Nature",
     titles: "22,500",
-    href: "/browse/science-nature",
+    href: "/browse",
     icon: HiOutlineBeaker,
   },
   {
     name: "Mystery & Thriller",
     titles: "47,200",
-    href: "/browse/mystery-thriller",
+    href: "/browse",
     icon: HiOutlineSearchCircle,
   },
 ] as const;

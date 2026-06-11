@@ -20,9 +20,7 @@ export function CategoriesHeroVisual() {
         {HERO_FLOATING_TILES.map((tile, i) => (
           <motion.article
             key={tile.label}
-            className={`group relative overflow-hidden rounded-2xl border border-line/80 bg-bg shadow-[0_20px_60px_-36px_rgba(26,34,24,0.2)] ${tile.rotate} ${tile.offset} ${
-              i === 0 ? "col-span-2 sm:col-span-1" : ""
-            } ${i === 4 ? "col-span-2 sm:col-span-1 sm:col-start-2" : ""}`}
+            className={`group relative overflow-hidden rounded-2xl border border-line/80 bg-bg shadow-[0_20px_60px_-36px_rgba(26,34,24,0.2)] ${tile.rotate} ${tile.offset}`}
             initial={reduceMotion ? false : { opacity: 0, y: 24, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{
